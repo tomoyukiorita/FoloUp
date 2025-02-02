@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/tooltip";
 import DataTable, {
   TableData,
-} from "@/components/dashboard/interview/DataTable";
+} from "@/components/dashboard/interview/dataTable";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 type SummaryProps = {
