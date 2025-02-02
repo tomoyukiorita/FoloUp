@@ -237,8 +237,6 @@ const DetailsPopup = ({
             Upload any documents related to the interview.
           </h3>
           <FileUpload
-            filekey={filekey}
-            setFilekey={setFilekey}
             isUploaded={isUploaded}
             setIsUploaded={setIsUploaded}
             fileName={fileName}

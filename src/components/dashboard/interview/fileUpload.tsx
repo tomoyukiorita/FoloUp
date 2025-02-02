@@ -4,11 +4,9 @@ import { toast } from "sonner";
 import { Inbox } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import * as pdfjsLib from "pdfjs-dist";
+import { parsePdf } from "@/actions/parsePdf";
 
 type Props = {
-  filekey: string;
-  setFilekey: (fileKey: string) => void;
   isUploaded: boolean;
   setIsUploaded: (isUploaded: boolean) => void;
   fileName: string;
@@ -17,8 +15,6 @@ type Props = {
 };
 
 const FileUpload = ({
-  filekey,
-  setFilekey,
   isUploaded,
   setIsUploaded,
   fileName,
@@ -26,6 +22,7 @@ const FileUpload = ({
   setUploadedDocumentContext,
 }: Props) => {
   const [uploading, setUploading] = useState(false);
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { getRootProps, getInputProps } = useDropzone({
     accept: { "application/pdf": [".pdf"] },
@@ -43,24 +40,14 @@ const FileUpload = ({
 
       try {
         setUploading(true);
+        const formData = new FormData();
+        formData.append("file", file);
 
-        // Read the file as ArrayBuffer
-        const arrayBuffer = await file.arrayBuffer();
-
-        // Load the PDF document
-        const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-
-        // Extract text from all pages
-        let fullText = "";
-        for (let i = 1; i <= pdf.numPages; i++) {
-          const page = await pdf.getPage(i);
-          const textContent = await page.getTextContent();
-          const pageText = textContent.items
-            .map((item: any) => item.str)
-            .join(" ");
-          fullText += pageText + "\n";
+        const result = await parsePdf(formData);
+        if (!result.success) {
+          throw new Error(result.error);
         }
-
+        const fullText = result.text || "";
         setUploadedDocumentContext(fullText);
         setIsUploaded(true);
       } catch (error) {
@@ -84,13 +71,6 @@ const FileUpload = ({
           })}
         >
           <input {...getInputProps()} />
-          {/* <>
-            {/* loading state 
-            <Loader2 className="h-10 w-10 text-blue-500 animate-spin" />
-            <p className="mt-2 text-sm text-slate-400">
-              Spilling Tea to GPT...
-            </p>
-          </> */}
           <>
             <>
               <Inbox className="w-8 h-8 text-blue-500" />

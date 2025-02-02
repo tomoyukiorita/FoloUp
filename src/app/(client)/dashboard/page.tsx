@@ -65,7 +65,6 @@ const Interviews = () => {
           let totalResponses = 0;
           if (currentPlan != "free_trial_over") {
             for (const interview of interviews) {
-              console.log(interview.id);
               const responses = await ResponseService.getAllResponses(
                 interview.id,
               );
@@ -80,7 +79,6 @@ const Interviews = () => {
             setCurrentPlan("free_trial_over");
             try {
               for (const interview of interviews) {
-                console.log(interview.id);
                 await InterviewService.updateInterview(
                   { is_active: false },
                   interview.id,
