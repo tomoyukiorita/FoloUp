@@ -4,8 +4,7 @@ import { toast } from "sonner";
 import { Inbox } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import * as pdfjsLib from 'pdfjs-dist';
-
+import * as pdfjsLib from "pdfjs-dist";
 
 type Props = {
   filekey: string;
@@ -44,20 +43,22 @@ const FileUpload = ({
 
       try {
         setUploading(true);
-        
+
         // Read the file as ArrayBuffer
         const arrayBuffer = await file.arrayBuffer();
-        
+
         // Load the PDF document
         const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-        
+
         // Extract text from all pages
-        let fullText = '';
+        let fullText = "";
         for (let i = 1; i <= pdf.numPages; i++) {
           const page = await pdf.getPage(i);
           const textContent = await page.getTextContent();
-          const pageText = textContent.items.map((item: any) => item.str).join(' ');
-          fullText += pageText + '\n';
+          const pageText = textContent.items
+            .map((item: any) => item.str)
+            .join(" ");
+          fullText += pageText + "\n";
         }
 
         setUploadedDocumentContext(fullText);

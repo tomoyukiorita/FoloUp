@@ -86,10 +86,6 @@ const Interviewers = () => {
             <></>
           )}
         </div>
-        <p className="my-3 ">
-          If you need to create custom interviewer, please reach out to us{" "}
-          <span className="font-semibold">founders@folo-up.co</span>.
-        </p>
       </div>
     </main>
   );
