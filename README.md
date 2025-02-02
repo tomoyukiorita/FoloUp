@@ -1,6 +1,8 @@
 # FoloUp
 
-FoloUp is a platform for companies to conduct AI powered hiring interviews with their candidates.
+FoloUp is an open source platform for companies to conduct AI powered hiring interviews with their candidates.
+
+<img src="https://github.com/user-attachments/assets/fa92ade1-02ea-4332-b5ed-97056dea01c3" alt="FoloUp Logo" width="800">
 
 ## Initial Setup
 
