@@ -48,7 +48,6 @@ const DetailsPopup = ({
     interviewData.interviewer_id,
   );
   const [objective, setObjective] = useState(interviewData.objective);
-  const [filekey, setFilekey] = useState(interviewData.file_key);
   const [isAnonymous, setIsAnonymous] = useState<boolean>(
     interviewData.is_anonymous,
   );
@@ -111,7 +110,6 @@ const DetailsPopup = ({
       interviewer_id: selectedInterviewer,
       question_count: Number(numQuestions),
       time_duration: duration,
-      file_key: filekey,
       description: generatedQuestionsResponse.description,
       is_anonymous: isAnonymous,
     };
@@ -129,7 +127,6 @@ const DetailsPopup = ({
       interviewer_id: selectedInterviewer,
       question_count: Number(numQuestions),
       time_duration: String(duration),
-      file_key: filekey,
       description: "",
       is_anonymous: isAnonymous,
     };

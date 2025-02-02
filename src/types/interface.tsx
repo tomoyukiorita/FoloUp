@@ -46,7 +46,6 @@ export interface InterviewBase {
   name: string;
   interviewer_id: bigint;
   objective: string;
-  file_key: string;
   question_count: number;
   time_duration: string;
   is_anonymous: boolean;
@@ -66,7 +65,6 @@ export interface InterviewDetails {
   theme_color: string;
   logo_url: string;
   respondents: string[];
-  file_url: string;
   readable_slug: string;
 }
 

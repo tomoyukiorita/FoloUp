@@ -15,7 +15,6 @@ const CreateEmptyInterviewData = (): InterviewBase => ({
   name: "",
   interviewer_id: BigInt(0),
   objective: "",
-  file_key: "",
   question_count: 0,
   time_duration: "",
   is_anonymous: false,
