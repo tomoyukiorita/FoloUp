@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import { ResponseService } from "@/services/responses.service";
 import { InterviewService } from "@/services/interviews.service";
 
-
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
 
