@@ -1,16 +1,12 @@
 import { generateInterviewAnalytics } from "@/services/analytics.service";
 import { ResponseService } from "@/services/responses.service";
-import { Analytics, CallData, Response } from "@/types/interface";
+import { Response } from "@/types/interface";
 import { NextResponse } from "next/server";
 import Retell from "retell-sdk";
 
 const retell = new Retell({
   apiKey: process.env.RETELL_API_KEY || "",
 });
-
-type callResponseType = {
-  callResponse: CallData;
-};
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();

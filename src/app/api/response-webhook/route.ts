@@ -1,4 +1,3 @@
-// pages/api/webhook.ts
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { Retell } from "retell-sdk";

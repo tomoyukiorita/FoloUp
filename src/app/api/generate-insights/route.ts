@@ -1,12 +1,8 @@
 import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
-import { getContext } from "@/lib/context";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { ResponseService } from "@/services/responses.service";
-import { Inter } from "next/font/google";
 import { InterviewService } from "@/services/interviews.service";
 
-const supabase = createClientComponentClient();
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
