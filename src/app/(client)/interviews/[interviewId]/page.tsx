@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useOrganization } from "@clerk/nextjs";
 import { useInterviews } from "@/contexts/interviews.context";
 import { Share2, Filter, Pencil, UserIcon, Eye, Palette } from "lucide-react";
@@ -15,7 +15,6 @@ import { formatTimestampToDateHHMM } from "@/lib/utils";
 import CallInfo from "@/components/call/callInfo";
 import SummaryInfo from "@/components/dashboard/interview/summaryInfo";
 import { InterviewService } from "@/services/interviews.service";
-import axios from "axios";
 import EditInterview from "@/components/dashboard/interview/editInterview";
 import Modal from "@/components/dashboard/Modal";
 import { toast } from "sonner";
@@ -35,7 +34,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CandidateStatus } from "@/types/enum";
-import TextMiddleLoader from "@/components/loaders/text-middle-loader/LoaderWithText";
+import LoaderWithText from "@/components/loaders/loader-with-text/loaderWithText";
 
 interface Props {
   params: {
@@ -231,14 +230,6 @@ const InterviewHome = ({ params, searchParams }: Props) => {
     setIsSharePopupOpen(false);
   };
 
-  const onGenerateInsights = async () => {
-    setIsGeneratingInsights(true);
-    await axios.post("/api/generate-insights", {
-      interviewId: interview?.id,
-    });
-    setIsGeneratingInsights(false);
-  };
-
   const handleColorChange = (color: any) => {
     setThemeColor(color.hex);
   };
@@ -263,7 +254,7 @@ const InterviewHome = ({ params, searchParams }: Props) => {
     <div className="flex flex-col w-full h-full m-2 bg-white">
       {loading ? (
         <div className="flex flex-col items-center justify-center h-[80%] w-full">
-          <TextMiddleLoader />
+          <LoaderWithText />
         </div>
       ) : (
         <>

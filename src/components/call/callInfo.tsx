@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { ResponseService } from "@/services/responses.service";
 import { useRouter } from "next/navigation";
-import TextMiddleLoader from "@/components/loaders/text-middle-loader/LoaderWithText";
+import LoaderWithText from "@/components/loaders/loader-with-text/loaderWithText";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CircularProgress } from "@nextui-org/react";
@@ -158,7 +158,7 @@ const CallInfo = ({
     <div className="h-screen z-[10] mx-2 mb-[100px] overflow-y-scroll">
       {isLoading ? (
         <div className="flex flex-col items-center justify-center h-[75%] w-full">
-          <TextMiddleLoader />
+          <LoaderWithText />
         </div>
       ) : (
         <>

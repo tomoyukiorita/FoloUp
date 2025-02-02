@@ -7,7 +7,7 @@ import Navbar from "@/components/navbar";
 import Providers from "@/components/providers";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
-import SideMenu from "@/components/SideMenu";
+import SideMenu from "@/components/sideMenu";
 import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });

@@ -20,7 +20,7 @@ import { testEmail } from "@/lib/utils";
 import { ResponseService } from "@/services/responses.service";
 import { Interview, FeedbackData } from "@/types/interface";
 import { FeedbackService } from "@/services/feedback.service";
-import { FeedbackForm } from "../FeedbackForm";
+import { FeedbackForm } from "@/components/call/feedbackForm";
 import {
   TabSwitchWarning,
   useTabSwitchPrevention,

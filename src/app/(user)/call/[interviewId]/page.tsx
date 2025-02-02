@@ -6,7 +6,7 @@ import Call from "@/components/call";
 import Image from "next/image";
 import { ArrowUpRightSquareIcon } from "lucide-react";
 import { Interview } from "@/types/interface";
-import TextMiddleLoader from "@/components/loaders/text-middle-loader/LoaderWithText";
+import LoaderWithText from "@/components/loaders/loader-with-text/loaderWithText";
 
 type Props = {
   params: {
@@ -25,7 +25,7 @@ const PopupLoader = () => {
     <div className="bg-white rounded-md absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 md:w-[80%] w-[90%]">
       <div className="h-[88vh] justify-center items-center rounded-lg border-2 border-b-4 border-r-4 border-black font-bold transition-all md:block dark:border-white">
         <div className="relative flex flex-col items-center justify-center h-full">
-          <TextMiddleLoader />
+          <LoaderWithText />
         </div>
       </div>
       <a
