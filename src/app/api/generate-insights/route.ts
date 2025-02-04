@@ -2,6 +2,10 @@ import { OpenAI } from "openai";
 import { NextResponse } from "next/server";
 import { ResponseService } from "@/services/responses.service";
 import { InterviewService } from "@/services/interviews.service";
+import {
+  SYSTEM_PROMPT,
+  createUserPrompt,
+} from "@/lib/prompts/generate-insights";
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
@@ -23,29 +27,19 @@ export async function POST(req: Request, res: Response) {
   });
 
   try {
-    const prompt = `Imagine you are an interviewer who is an expert in uncovering deeper insights from call summaries.
-      Use the list of call summaries and the interview details below to generate insights.
-      
-      ###
-      Call Summaries: ${callSummaries}
-
-      ###
-      Interview Title: ${interview.name}
-      Interview Objective: ${interview.objective}
-      Interview Description: ${interview.description}
-
-      Give 3 insights from the call summaries that highlights user feedback. Only output the insights. Do not include user names in the insights.
-      Make sure each insight is 25 words or less.
-      
-      Output the answer in JSON format with the the key "insights" with an array on 3 insights as the value.`;
+    const prompt = createUserPrompt(
+      callSummaries,
+      interview.name,
+      interview.objective,
+      interview.description,
+    );
 
     const baseCompletion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
         {
           role: "system",
-          content:
-            "You are an expert in uncovering deeper insights from interview question and answer sets.",
+          content: SYSTEM_PROMPT,
         },
         {
           role: "user",

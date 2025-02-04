@@ -1,5 +1,4 @@
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { get } from "http";
 
 const supabase = createClientComponentClient();
 
