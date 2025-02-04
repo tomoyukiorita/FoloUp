@@ -4,6 +4,8 @@ FoloUp is an open source platform for companies to conduct AI powered hiring int
 
 <img src="https://github.com/user-attachments/assets/fa92ade1-02ea-4332-b5ed-97056dea01c3" alt="FoloUp Logo" width="800">
 
+Here's a [loom](https://www.loom.com/share/762fd7d12001490bbfdcf3fac37ff173?sid=9a5b2a5a-64df-4c4c-a0e7-fc9765691f81) of me explaining the app.
+
 ## Initial Setup
 
 1. Clone the project.

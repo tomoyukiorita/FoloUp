@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import Modal from "@/components/dashboard/Modal";
 import CreateInterviewModal from "@/components/dashboard/interview/createInterviewModal";
+import Modal from "@/components/dashboard/modal";
 
 const CreateInterviewCard = () => {
   const [open, setOpen] = useState(false);

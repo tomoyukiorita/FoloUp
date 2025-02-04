@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import Modal from "@/components/dashboard/Modal";
+import Modal from "@/components/dashboard/modal";
 import { Interviewer } from "@/types/interface";
 import InterviewerDetailsModal from "@/components/dashboard/interviewer/interviewerDetailsModal";
 

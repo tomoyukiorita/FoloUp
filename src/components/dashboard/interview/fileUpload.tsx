@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import { Inbox } from "lucide-react";
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { parsePdf } from "@/actions/parsePdf";
+import { parsePdf } from "@/actions/parse-pdf";
 
 type Props = {
   isUploaded: boolean;

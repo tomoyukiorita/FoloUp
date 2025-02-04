@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
@@ -11,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import FileUpload from "../fileUpload";
-import Modal from "@/components/dashboard/Modal";
+import Modal from "@/components/dashboard/modal";
 import InterviewerDetailsModal from "@/components/dashboard/interviewer/interviewerDetailsModal";
 import { Interviewer } from "@/types/interface";
 
@@ -20,7 +19,6 @@ interface Props {
   setLoading: (loading: boolean) => void;
   interviewData: InterviewBase;
   setInterviewData: (interviewData: InterviewBase) => void;
-  // Below for File Upload
   isUploaded: boolean;
   setIsUploaded: (isUploaded: boolean) => void;
   fileName: string;
@@ -32,7 +30,6 @@ const DetailsPopup = ({
   setLoading,
   interviewData,
   setInterviewData,
-  // Below for File Upload
   isUploaded,
   setIsUploaded,
   fileName,
@@ -82,8 +79,6 @@ const DetailsPopup = ({
       number: numQuestions,
       context: uploadedDocumentContext,
     };
-
-    console.log("context", uploadedDocumentContext);
 
     const generatedQuestions = (await axios.post(
       "/api/generate-interview-questions",
@@ -138,7 +133,6 @@ const DetailsPopup = ({
       setName("");
       setSelectedInterviewer(BigInt(0));
       setObjective("");
-      setFilekey("");
       setIsAnonymous(false);
       setNumQuestions("");
       setDuration("");

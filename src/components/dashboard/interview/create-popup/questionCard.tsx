@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Question } from "@/types/interface";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -133,15 +132,6 @@ const questionCard = ({
               size={24}
             />
           </div>
-          {/* <h3 className="text-lg font-semibold text-left mt-4">Categories <span className="text-sm font-normal">(Seperated by commas)</span></h3> */}
-
-          {/* <input
-              type="text"
-              value={categories}
-              className="h-8 mt-2 border-2 rounded-md w-full px-2 border-gray-400 "
-              placeholder="e.g. Good, Neutral, Bad"
-              onChange={(e) => setCategories(e.target.value)}
-            /> */}
         </CardContent>
       </Card>
     </>

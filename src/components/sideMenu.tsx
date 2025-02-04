@@ -1,14 +1,8 @@
 "use client";
 
 import React from "react";
-import {
-  PlayCircleIcon,
-  SpeechIcon,
-  SettingsIcon,
-  ScrollTextIcon,
-} from "lucide-react";
+import { PlayCircleIcon, SpeechIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { OrganizationSwitcher } from "@clerk/nextjs";
 
 const SideMenu = () => {
   const pathname = usePathname();

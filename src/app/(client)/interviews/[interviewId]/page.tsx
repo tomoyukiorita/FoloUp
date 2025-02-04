@@ -16,7 +16,7 @@ import CallInfo from "@/components/call/callInfo";
 import SummaryInfo from "@/components/dashboard/interview/summaryInfo";
 import { InterviewService } from "@/services/interviews.service";
 import EditInterview from "@/components/dashboard/interview/editInterview";
-import Modal from "@/components/dashboard/Modal";
+import Modal from "@/components/dashboard/modal";
 import { toast } from "sonner";
 import { ChromePicker } from "react-color";
 import SharePopup from "@/components/dashboard/interview/sharePopup";
