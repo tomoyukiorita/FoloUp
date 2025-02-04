@@ -44,6 +44,8 @@ Supabase is used for storing the data. It's really simple to set up and the free
 
 We use Retell AI to manage all the voice calls. They manage storage of recordings and provide a simple SDK to integrate with. They provide free credits to start with and will have to pay as you go.
 
+1. Create an API key from [Retell AI Dashboard](https://dashboard.retellai.com/apiKey) and add it to the `.env` file in `RETELL_API_KEY`
+
 ## Add OpenAI API Key
 
 We use OpenAI to generate questions for interviews and analyze responses. This would not be that costly.

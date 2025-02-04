@@ -147,7 +147,7 @@ const Interviews = () => {
                     <div className="grid grid-cols-2 gap-2">
                       <div className="flex justify-center items-center">
                         <Image
-                          src={"/Premium-Plan-Icon.png"}
+                          src={"/premium-plan-icon.png"}
                           alt="Graphic"
                           width={299}
                           height={300}
