@@ -10,6 +10,7 @@ export interface Interviewer {
   image: string;
   description: string;
   audio: string;
+  agent_id: string;
 }
 
 export interface User {

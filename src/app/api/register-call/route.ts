@@ -1,3 +1,4 @@
+import { InterviewerService } from "@/services/interviewers.service";
 import { NextResponse } from "next/server";
 import Retell from "retell-sdk";
 
@@ -7,17 +8,10 @@ const retellClient = new Retell({
 
 export async function POST(req: Request, res: Response) {
   const body = await req.json();
-  const agent_id =
-    body.interviewer_id == BigInt(1)
-      ? "a21120e6da507422b70fe6ac08cd1986"
-      : body.interviewer_id == BigInt(2)
-        ? "3e11433523312a0827ebb50805f9f346"
-        : "4ea9cb1cfe11a2f874ed1aa5c8022a9e";
-  const registerCallResponse = await retellClient.call.register({
-    agent_id: agent_id,
-    audio_encoding: "s16le",
-    audio_websocket_protocol: "web",
-    sample_rate: 24000,
+  const interviewerId = body.interviewer_id;
+  const interviewer = await InterviewerService.getInterviewer(interviewerId);
+  const registerCallResponse = await retellClient.call.createWebCall({
+    agent_id: interviewer?.agent_id,
     retell_llm_dynamic_variables: body.dynamic_data,
   });
 

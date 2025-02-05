@@ -5,6 +5,7 @@ import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import InterviewerCard from "@/components/dashboard/interviewer/interviewerCard";
+import CreateInterviewerButton from "@/components/dashboard/interviewer/createInterviewerButton";
 
 const Interviewers = () => {
   const { interviewers, interviewersLoading } = useInterviewers();
@@ -38,9 +39,6 @@ const Interviewers = () => {
   return (
     <main className="p-8 pt-0 ml-12 mr-auto rounded-md">
       <div className="flex flex-col items-left">
-        {/* <h2 className="mb-3 mr-2 text-lg font-semibold tracking-tight">
-          Welcome Back!👋
-        </h2> */}
         <div className="flex flex-row mt-5">
           <div>
             <h2 className="mr-2 text-2xl font-semibold tracking-tight mt-3">
@@ -50,15 +48,13 @@ const Interviewers = () => {
               Get to know them by clicking the profile.
             </h3>
           </div>
-          {/* <div className="ml-2 align-middle flex justify-center my-auto">
-            <CreateInterviewerCard />
-          </div> */}
         </div>
         <div className="relative flex items-center mt-2 ">
           <div
             id="slider"
             className=" h-44 pt-2 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide w-[40rem]"
           >
+            {interviewers.length === 0 ? <CreateInterviewerButton /> : <></>}
             {!interviewersLoading ? (
               <>
                 {interviewers.map((interviewer, key) => (

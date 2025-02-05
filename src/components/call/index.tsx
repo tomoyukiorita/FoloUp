@@ -10,7 +10,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Card, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { useResponses } from "@/contexts/responses.context";
-import { InterviewContext, useInterviews } from "@/contexts/interviews.context";
 import Image from "next/image";
 import axios from "axios";
 import { RetellWebClient } from "retell-client-js-sdk";
@@ -375,8 +374,7 @@ const Call = ({ interview }: InterviewProps) => {
                     onClick={startConversation}
                     disabled={
                       Loading ||
-                      (!interview?.is_anonymous && !isValidEmail) ||
-                      !name
+                      (!interview?.is_anonymous && (!isValidEmail || !name))
                     }
                   >
                     {!Loading ? "Start Interview" : <MiniLoader />}
