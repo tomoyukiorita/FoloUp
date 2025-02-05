@@ -70,7 +70,7 @@ const getInterviewer = async (interviewerId: string) => {
 };
 
 export const InterviewerService = {
-  getAllInterviewers: getAllInterviewers,
-  createInterviewer: createInterviewer,
-  getInterviewer: getInterviewer,
+  getAllInterviewers,
+  createInterviewer,
+  getInterviewer,
 };

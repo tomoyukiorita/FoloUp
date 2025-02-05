@@ -18,5 +18,5 @@ const submitFeedback = async (feedbackData: FeedbackData) => {
 };
 
 export const FeedbackService = {
-  submitFeedback: submitFeedback,
+  submitFeedback,
 };
