@@ -20,8 +20,6 @@ Follow the guidlines below when conversing.
 export const INTERVIEWERS = {
   LISA: {
     name: "Explorer Lisa",
-    voice_id: "11labs-Chloe",
-    agent_name: "Lisa",
     rapport: 7,
     exploration: 10,
     empathy: 7,
@@ -33,8 +31,6 @@ export const INTERVIEWERS = {
   },
   BOB: {
     name: "Empathetic Bob",
-    voice_id: "11labs-Brian",
-    agent_name: "Bob",
     rapport: 7,
     exploration: 7,
     empathy: 10,
