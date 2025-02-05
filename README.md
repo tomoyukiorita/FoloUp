@@ -91,6 +91,10 @@ If you'd like to contribute to FoloUp, feel free to fork the repository, make yo
 
 For a detailed guide on contributing, read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
+## Show Your Support 🌟
+
+If you find FoloUp helpful, please consider giving us a star on GitHub! It helps us reach more developers and continue improving the project.
+
 ## License
 
 The software code is licensed under the MIT License.
