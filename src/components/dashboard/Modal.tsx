@@ -7,7 +7,7 @@ interface ModalProps {
   children: ReactNode;
   modalId?: string;
 }
-// to add blue add backdrop-blur-md to the div with bg-black/30
+
 export default function Modal({
   open,
   onClose,

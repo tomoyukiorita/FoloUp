@@ -7,16 +7,8 @@ const getAllInterviews = async (userId: string, organizationId: string) => {
     const { data: clientData, error: clientError } = await supabase
       .from("interview")
       .select(`*`)
-      //.filter("user_id", "eq", userId) //Remove this line
-      //.filter("organization_id", "eq", organizationId)
       .or(`organization_id.eq.${organizationId},user_id.eq.${userId}`)
       .order("created_at", { ascending: false });
-
-    // const { data: defaultData, error: defaultError } = await supabase
-    //   .from("interview")
-    //   .select(`*`)
-    //   .filter("user_id", "eq", "default")
-    //   .order('created_at', { ascending: false });
 
     return [...(clientData || [])];
   } catch (error) {
@@ -79,10 +71,23 @@ const getAllRespondents = async (interviewId: string) => {
   }
 };
 
+const createInterview = async (payload: any) => {
+  const { error, data } = await supabase
+    .from("interview")
+    .insert({ ...payload });
+  if (error) {
+    console.log(error);
+    return [];
+  }
+
+  return data;
+};
+
 export const InterviewService = {
   getAllInterviews,
   getInterviewById,
   updateInterview,
   deleteInterview,
   getAllRespondents,
+  createInterview,
 };

@@ -1,8 +1,6 @@
 import { nanoid } from "nanoid";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
-
-const supabase = createClientComponentClient();
+import { InterviewService } from "@/services/interviews.service";
 
 const base_url = process.env.NEXT_PUBLIC_LIVE_URL;
 
@@ -22,20 +20,12 @@ export async function POST(req: Request, res: Response) {
       readableSlug = `${orgNameSlug}-${interviewNameSlug}`;
     }
 
-    const { error, data } = await supabase.from("interview").insert({
+    const newInterview = await InterviewService.createInterview({
       ...payload,
       url: url,
       id: url_id,
       readable_slug: readableSlug,
     });
-
-    if (error) {
-      console.error(error);
-      return NextResponse.json(
-        { error: "Internal server error" },
-        { status: 500 },
-      );
-    }
 
     return NextResponse.json(
       { response: "Interview created successfully" },

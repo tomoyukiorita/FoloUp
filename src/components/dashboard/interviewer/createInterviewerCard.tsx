@@ -13,7 +13,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useInterviewers } from "@/contexts/interviewers.context";
 import { useClerk } from "@clerk/nextjs";
 
-const interviewerCard = () => {
+const createInterviewerCard = () => {
   const [open, setOpen] = useState(false);
   const [gallery, setGallery] = useState(false);
   const [name, setName] = useState("");
@@ -220,4 +220,4 @@ const interviewerCard = () => {
   );
 };
 
-export default interviewerCard;
+export default createInterviewerCard;

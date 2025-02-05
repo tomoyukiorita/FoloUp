@@ -266,9 +266,6 @@ const Call = ({ interview }: InterviewProps) => {
     }
   }, [isEnded]);
 
-  // Highlight the active User with a border around the user's avatar
-  // Add avatar to user
-  // Add interviewer details
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       {isStarted && <TabSwitchWarning />}
@@ -319,21 +316,17 @@ const Call = ({ interview }: InterviewProps) => {
                 <div>
                   {interview?.logo_url && (
                     <div className="p-1 flex justify-center">
-                      <img
+                      <Image
                         src={interview?.logo_url}
                         alt="Logo"
                         className="h-10 w-auto"
+                        width={100}
+                        height={100}
                       />
                     </div>
                   )}
                   <div className="p-2 font-normal text-sm mb-4 whitespace-pre-line">
                     {interview?.description}
-                    {/* <p>
-                      {"\n"}
-                      Your insights are invaluable to us and will help shape our
-                      future offerings.
-                    </p> */}
-                    {/* <p>{"\n"}Your responses are anonymous and we encourage you to speak freely & openly.</p> */}
                     <p className="font-bold text-sm">
                       {"\n"}Ensure your volume is up and grant microphone access
                       when prompted. Additionally, please make sure you are in a
@@ -450,7 +443,7 @@ const Call = ({ interview }: InterviewProps) => {
                   </div>
                   <div className="flex flex-col mx-auto justify-center items-center align-middle">
                     <Image
-                      src={`/user-icon.png`} //TODO: change this logic
+                      src={`/user-icon.png`}
                       alt="Picture of the user"
                       width={120}
                       height={120}
