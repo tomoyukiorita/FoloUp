@@ -6,8 +6,7 @@ const getAllInterviewers = async (clientId: string = "") => {
   try {
     const { data: clientData, error: clientError } = await supabase
       .from("interviewer")
-      .select(`*`)
-      .gt("id", 45);
+      .select(`*`);
 
     if (clientError) {
       console.error(

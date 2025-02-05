@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger";
 import { generateInterviewAnalytics } from "@/services/analytics.service";
 import { ResponseService } from "@/services/responses.service";
 import { Response } from "@/types/interface";
@@ -9,6 +10,7 @@ const retell = new Retell({
 });
 
 export async function POST(req: Request, res: Response) {
+  logger.info("get-call request received");
   const body = await req.json();
 
   const callDetails: Response = await ResponseService.getResponseByCallId(
@@ -49,6 +51,9 @@ export async function POST(req: Request, res: Response) {
     },
     body.id,
   );
+
+  logger.info("Call analysed successfully");
+
   return NextResponse.json(
     {
       callResponse,
