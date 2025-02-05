@@ -2,7 +2,7 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 const supabase = createClientComponentClient();
 
-const getAllInterviewers = async (clientId: string) => {
+const getAllInterviewers = async (clientId: string = "") => {
   try {
     const { data: clientData, error: clientError } = await supabase
       .from("interviewer")
