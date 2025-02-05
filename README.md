@@ -1,4 +1,8 @@
-# FoloUp
+[![GitHub stars](https://img.shields.io/github/stars/foloup/foloup?style=social)](https://github.com/foloup/foloup/stargazers)
+![License](https://img.shields.io/github/license/foloup/foloup)
+[![Twitter Follow](https://img.shields.io/twitter/follow/SuveenE?style=social)](https://x.com/SuveenE)
+
+# FoloUp - AI-powered voice interviewer for hiring 💼
 
 FoloUp is an open source platform for companies to conduct AI powered hiring interviews with their candidates.
 
@@ -90,6 +94,3 @@ For a detailed guide on contributing, read the [CONTRIBUTING.md](CONTRIBUTING.md
 ## License
 
 The software code is licensed under the MIT License.
-The brand name, and other brand assets are proprietary and not included in the MIT license.
-
-See the [LICENSE](LICENSE) file for details.
