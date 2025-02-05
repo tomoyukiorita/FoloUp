@@ -3,7 +3,7 @@ CREATE TYPE plan AS ENUM ('free', 'pro', 'free_trial_over');
 
 -- Create tables
 CREATE TABLE organization (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id TEXT PRIMARY KEY DEFAULT uuid_generate_v4(),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
     name TEXT,
     image_url TEXT,
@@ -12,10 +12,10 @@ CREATE TABLE organization (
 );
 
 CREATE TABLE "user" (
-    id UUID PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
     email TEXT,
-    organization_id UUID REFERENCES organization(id)
+    organization_id TEXT REFERENCES organization(id)
 );
 
 CREATE TABLE interviewer (
@@ -33,13 +33,13 @@ CREATE TABLE interviewer (
 );
 
 CREATE TABLE interview (
-    id UUID PRIMARY KEY,
+    id TEXT PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
     name TEXT,
     description TEXT,
     objective TEXT,
-    organization_id UUID REFERENCES organization(id),
-    user_id UUID REFERENCES "user"(id),
+    organization_id TEXT REFERENCES organization(id),
+    user_id TEXT REFERENCES "user"(id),
     interviewer_id INTEGER REFERENCES interviewer(id),
     is_active BOOLEAN DEFAULT true,
     is_anonymous BOOLEAN DEFAULT false,
@@ -60,7 +60,7 @@ CREATE TABLE interview (
 CREATE TABLE response (
     id SERIAL PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
-    interview_id UUID REFERENCES interview(id),
+    interview_id TEXT REFERENCES interview(id),
     name TEXT,
     email TEXT,
     call_id TEXT,
@@ -77,7 +77,7 @@ CREATE TABLE response (
 CREATE TABLE feedback (
     id SERIAL PRIMARY KEY,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc', NOW()),
-    interview_id UUID REFERENCES interview(id),
+    interview_id TEXT REFERENCES interview(id),
     email TEXT,
     feedback TEXT,
     satisfaction INTEGER
