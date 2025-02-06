@@ -87,7 +87,6 @@ function InterviewCard({ name, interviewerId, id, url, readableSlug }: Props) {
               duration: 3000,
             },
           );
-          // changing back to default state after 2 seconds.
           setTimeout(() => {
             setCopied(false);
           }, 2000);

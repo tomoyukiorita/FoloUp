@@ -36,7 +36,7 @@ const interviewerCard = ({ interviewer }: Props) => {
       </Card>
       <Modal
         open={open}
-        modalId="1" // id 1 means close on outside click
+        closeOnOutsideClick={true}
         onClose={() => {
           setOpen(false);
         }}

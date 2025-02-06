@@ -5,13 +5,13 @@ interface ModalProps {
   open: boolean;
   onClose: () => void;
   children: ReactNode;
-  modalId?: string;
+  closeOnOutsideClick?: boolean;
 }
 
 export default function Modal({
   open,
   onClose,
-  modalId,
+  closeOnOutsideClick = true,
   children,
 }: ModalProps) {
   return (
@@ -19,7 +19,7 @@ export default function Modal({
       className={`fixed z-50 inset-0 flex justify-center items-center transition-colors 
       ${open ? "visible bg-black/30" : "invisible"}
       `}
-      onClick={modalId == "1" ? onClose : () => {}}
+      onClick={closeOnOutsideClick ? onClose : () => {}}
     >
       <div
         className={`bg-white rounded-xl shadow p-6 transition-all

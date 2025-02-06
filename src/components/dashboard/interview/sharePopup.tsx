@@ -75,7 +75,7 @@ function SharePopup({ open, onClose, shareContent }: SharePopupProps) {
   }
 
   return (
-    <Modal open={open} modalId="2" onClose={onClose}>
+    <Modal open={open} closeOnOutsideClick={false} onClose={onClose}>
       <div className="w-[28rem] flex flex-col">
         <p className="text-lg font-semibold mb-4">Share via:</p>
         <div className="h-auto rounded-xl">

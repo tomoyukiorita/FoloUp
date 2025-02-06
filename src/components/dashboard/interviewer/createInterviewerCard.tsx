@@ -74,7 +74,7 @@ const createInterviewerCard = () => {
       />
       <Modal
         open={open}
-        modalId="1" // id 1 means close on outside click
+        closeOnOutsideClick={true}
         onClose={() => {
           setOpen(false);
         }}
@@ -189,7 +189,7 @@ const createInterviewerCard = () => {
       </Modal>
       <Modal
         open={gallery}
-        modalId="1" // id 1 means close on outside click
+        closeOnOutsideClick={true}
         onClose={() => {
           setGallery(false);
         }}

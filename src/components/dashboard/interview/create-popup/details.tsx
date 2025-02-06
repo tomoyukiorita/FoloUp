@@ -345,7 +345,7 @@ function DetailsPopup({
       </div>
       <Modal
         open={openInterviewerDetails}
-        modalId="1" // id 1 means close on outside click
+        closeOnOutsideClick={true}
         onClose={() => {
           setOpenInterviewerDetails(false);
         }}

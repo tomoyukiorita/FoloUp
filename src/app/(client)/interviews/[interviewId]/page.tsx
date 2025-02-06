@@ -559,7 +559,11 @@ function InterviewHome({ params, searchParams }: Props) {
           </div>
         </>
       )}
-      <Modal open={showColorPicker} modalId="2" onClose={applyColorChange}>
+      <Modal
+        open={showColorPicker}
+        closeOnOutsideClick={false}
+        onClose={applyColorChange}
+      >
         <div className="w-[250px] p-3">
           <h3 className="text-lg font-semibold mb-4 text-center">
             Choose a Theme Color

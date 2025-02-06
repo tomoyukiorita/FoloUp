@@ -28,7 +28,7 @@ function CreateInterviewCard() {
       </Card>
       <Modal
         open={open}
-        modalId="2" // id 2 means dont close on outside click
+        closeOnOutsideClick={false}
         onClose={() => {
           setOpen(false);
         }}

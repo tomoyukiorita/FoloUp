@@ -15,7 +15,7 @@ import axios from "axios";
 import { RetellWebClient } from "retell-client-js-sdk";
 import MiniLoader from "../loaders/mini-loader/miniLoader";
 import { toast } from "sonner";
-import { testEmail } from "@/lib/utils";
+import { isLightColor, testEmail } from "@/lib/utils";
 import { ResponseService } from "@/services/responses.service";
 import { Interview } from "@/types/interview";
 import { FeedbackData } from "@/types/response";
@@ -106,17 +106,6 @@ function Call({ interview }: InterviewProps) {
     }
   };
 
-  // dark and light txt
-  const isLightColor = (color: string) => {
-    const hex = color?.replace("#", "");
-    const r = parseInt(hex?.substring(0, 2), 16);
-    const g = parseInt(hex?.substring(2, 4), 16);
-    const b = parseInt(hex?.substring(4, 6), 16);
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-
-    return brightness > 155;
-  };
-
   useEffect(() => {
     if (lastUserResponseRef.current) {
       const { current } = lastUserResponseRef;
@@ -147,7 +136,6 @@ function Call({ interview }: InterviewProps) {
   }, [email]);
 
   useEffect(() => {
-    // Setup event listeners
     webClient.on("conversationStarted", () => {
       console.log("conversationStarted");
     });
@@ -170,7 +158,6 @@ function Call({ interview }: InterviewProps) {
 
     webClient.on("update", (update) => {
       const roleContents: { [key: string]: string } = {};
-      // console.log("turn", update);
       if (update.turntaking === "agent_turn") {
         setActiveTurn("agent");
       } else if (update.turntaking === "user_turn") {
@@ -475,7 +462,6 @@ function Call({ interview }: InterviewProps) {
                     <Button
                       className=" bg-white text-black border  border-indigo-600 h-10 mx-auto flex flex-row justify-center mb-8"
                       disabled={Loading}
-                      //onKeyDown={(e) => (e.key === "Enter" ? handleSubmit(answer) : "")}
                     >
                       End Interview{" "}
                       <XCircleIcon className="h-[1.5rem] ml-2 w-[1.5rem] rotate-0 scale-100  dark:-rotate-90 dark:scale-0 text-red" />
