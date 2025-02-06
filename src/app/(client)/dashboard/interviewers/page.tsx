@@ -7,7 +7,7 @@ import { ChevronRight } from "lucide-react";
 import InterviewerCard from "@/components/dashboard/interviewer/interviewerCard";
 import CreateInterviewerButton from "@/components/dashboard/interviewer/createInterviewerButton";
 
-const Interviewers = () => {
+function Interviewers() {
   const { interviewers, interviewersLoading } = useInterviewers();
 
   const slideLeft = () => {
@@ -24,17 +24,17 @@ const Interviewers = () => {
     }
   };
 
-  const InterviewersLoader = () => {
+  function InterviewersLoader() {
     return (
       <>
         <div className="flex">
-          <div className="h-40 w-36 ml-1 mr-3 flex-none animate-pulse rounded-xl bg-gray-300"></div>
-          <div className="h-40 w-36 ml-1 mr-3 flex-none animate-pulse rounded-xl bg-gray-300"></div>
-          <div className="h-40 w-36 ml-1 mr-3 flex-none animate-pulse rounded-xl bg-gray-300"></div>
+          <div className="h-40 w-36 ml-1 mr-3 flex-none animate-pulse rounded-xl bg-gray-300" />
+          <div className="h-40 w-36 ml-1 mr-3 flex-none animate-pulse rounded-xl bg-gray-300" />
+          <div className="h-40 w-36 ml-1 mr-3 flex-none animate-pulse rounded-xl bg-gray-300" />
         </div>
       </>
     );
-  };
+  }
 
   return (
     <main className="p-8 pt-0 ml-12 mr-auto rounded-md">
@@ -57,8 +57,11 @@ const Interviewers = () => {
             {interviewers.length === 0 ? <CreateInterviewerButton /> : <></>}
             {!interviewersLoading ? (
               <>
-                {interviewers.map((interviewer, key) => (
-                  <InterviewerCard key={key} interviewer={interviewer} />
+                {interviewers.map((interviewer) => (
+                  <InterviewerCard
+                    key={interviewer.id}
+                    interviewer={interviewer}
+                  />
                 ))}
               </>
             ) : (
@@ -69,13 +72,13 @@ const Interviewers = () => {
             <div className="flex-row justify-center items-center space-y-10">
               <ChevronRight
                 className="opacity-50 cursor-pointer hover:opacity-100"
-                onClick={slideRight}
                 size={40}
+                onClick={slideRight}
               />
               <ChevronLeft
                 className="opacity-50 cursor-pointer hover:opacity-100"
-                onClick={() => slideLeft()}
                 size={40}
+                onClick={() => slideLeft()}
               />
             </div>
           ) : (
@@ -85,6 +88,6 @@ const Interviewers = () => {
       </div>
     </main>
   );
-};
+}
 
 export default Interviewers;

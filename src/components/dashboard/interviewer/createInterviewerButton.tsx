@@ -6,7 +6,7 @@ import axios from "axios";
 import { Plus, Loader2 } from "lucide-react";
 import { useState } from "react";
 
-const createInterviewerButton = () => {
+function CreateInterviewerButton() {
   const [isLoading, setIsLoading] = useState(false);
 
   const createInterviewers = async () => {
@@ -20,8 +20,8 @@ const createInterviewerButton = () => {
   return (
     <>
       <Card
-        onClick={() => createInterviewers()}
         className="p-0 inline-block cursor-pointer hover:scale-105 ease-in-out duration-300 h-40 w-36 ml-1 mr-3 rounded-xl shrink-0 overflow-hidden shadow-md"
+        onClick={() => createInterviewers()}
       >
         <CardContent className="p-0">
           {isLoading ? (
@@ -40,6 +40,6 @@ const createInterviewerButton = () => {
       </Card>
     </>
   );
-};
+}
 
-export default createInterviewerButton;
+export default CreateInterviewerButton;

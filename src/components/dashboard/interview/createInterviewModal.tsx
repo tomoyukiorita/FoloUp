@@ -23,7 +23,7 @@ const CreateEmptyInterviewData = (): InterviewBase => ({
   response_count: BigInt(0),
 });
 
-const CreateInterviewModal = ({ open, setOpen }: Props) => {
+function CreateInterviewModal({ open, setOpen }: Props) {
   const [loading, setLoading] = useState(false);
   const [proceed, setProceed] = useState(false);
   const [interviewData, setInterviewData] = useState<InterviewBase>(
@@ -39,6 +39,7 @@ const CreateInterviewModal = ({ open, setOpen }: Props) => {
       setLoading(false);
       setProceed(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [interviewData]);
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const CreateInterviewModal = ({ open, setOpen }: Props) => {
       setIsUploaded(false);
       setFileName("");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   return (
@@ -79,6 +81,6 @@ const CreateInterviewModal = ({ open, setOpen }: Props) => {
       )}
     </>
   );
-};
+}
 
 export default CreateInterviewModal;

@@ -26,23 +26,25 @@ type SummaryProps = {
   interview: Interview | undefined;
 };
 
-const InfoTooltip = ({ content }: { content: string }) => (
-  <TooltipProvider>
-    <Tooltip>
-      <TooltipTrigger>
-        <Info
-          className="h-2 w-2 text-[#4F46E5] inline-block ml-0 align-super font-bold"
-          strokeWidth={2.5}
-        />
-      </TooltipTrigger>
-      <TooltipContent className="bg-gray-500 text-white font-normal">
-        <p>{content}</p>
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
-);
+function InfoTooltip({ content }: { content: string }) {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Info
+            className="h-2 w-2 text-[#4F46E5] inline-block ml-0 align-super font-bold"
+            strokeWidth={2.5}
+          />
+        </TooltipTrigger>
+        <TooltipContent className="bg-gray-500 text-white font-normal">
+          <p>{content}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+}
 
-const SummaryInfo = ({ responses, interview }: SummaryProps) => {
+function SummaryInfo({ responses, interview }: SummaryProps) {
   const { interviewers } = useInterviewers();
   const [interviewer, setInterviewer] = useState<Interviewer>();
   const [totalDuration, setTotalDuration] = useState<number>(0);
@@ -83,7 +85,9 @@ const SummaryInfo = ({ responses, interview }: SummaryProps) => {
   };
 
   useEffect(() => {
-    if (!interviewers || !interview) return;
+    if (!interviewers || !interview) {
+      return;
+    }
     const interviewer = interviewers.find(
       (interviewer) => interviewer.id === interview.interviewer_id,
     );
@@ -91,7 +95,9 @@ const SummaryInfo = ({ responses, interview }: SummaryProps) => {
   }, [interviewers, interview]);
 
   useEffect(() => {
-    if (!responses) return;
+    if (!responses) {
+      return;
+    }
 
     const sentimentCounter = {
       positive: 0,
@@ -344,6 +350,6 @@ const SummaryInfo = ({ responses, interview }: SummaryProps) => {
       )}
     </div>
   );
-};
+}
 
 export default SummaryInfo;

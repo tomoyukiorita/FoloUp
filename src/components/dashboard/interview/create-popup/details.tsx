@@ -25,7 +25,7 @@ interface Props {
   setFileName: (fileName: string) => void;
 }
 
-const DetailsPopup = ({
+function DetailsPopup({
   open,
   setLoading,
   interviewData,
@@ -34,7 +34,7 @@ const DetailsPopup = ({
   setIsUploaded,
   fileName,
   setFileName,
-}: Props) => {
+}: Props) {
   const { interviewers } = useInterviewers();
   const [isClicked, setIsClicked] = useState(false);
   const [openInterviewerDetails, setOpenInterviewerDetails] = useState(false);
@@ -165,7 +165,7 @@ const DetailsPopup = ({
               {interviewers.map((item, key) => (
                 <div
                   className=" p-0 inline-block cursor-pointer ml-1 mr-5 rounded-xl shrink-0 overflow-hidden"
-                  key={key}
+                  key={item.id}
                 >
                   <button
                     className="absolute ml-9"
@@ -203,13 +203,13 @@ const DetailsPopup = ({
               <div className="flex-row justify-center ml-3 mb-1 items-center space-y-6">
                 <ChevronRight
                   className="opacity-50 cursor-pointer hover:opacity-100"
-                  onClick={() => slideRight("slider-3", 115)}
                   size={27}
+                  onClick={() => slideRight("slider-3", 115)}
                 />
                 <ChevronLeft
                   className="opacity-50 cursor-pointer hover:opacity-100"
-                  onClick={() => slideLeft("slider-3", 115)}
                   size={27}
+                  onClick={() => slideLeft("slider-3", 115)}
                 />
               </div>
             ) : (
@@ -241,10 +241,10 @@ const DetailsPopup = ({
               </span>
               <Switch
                 checked={isAnonymous}
-                onCheckedChange={(checked) => setIsAnonymous(checked)}
                 className={`ml-4 mt-1 ${
                   isAnonymous ? "bg-indigo-600" : "bg-[#E6E7EB]"
                 }`}
+                onCheckedChange={(checked) => setIsAnonymous(checked)}
               />
             </div>
             <span
@@ -354,6 +354,6 @@ const DetailsPopup = ({
       </Modal>
     </>
   );
-};
+}
 
 export default DetailsPopup;

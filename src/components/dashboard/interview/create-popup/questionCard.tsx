@@ -111,6 +111,7 @@ const questionCard = ({
               value={questionData?.question}
               className="h-fit mt-3 pt-1 border-2 rounded-md w-full px-2 border-gray-400"
               placeholder="e.g. Can you tell me about a challenging project you’ve worked on?"
+              rows={3}
               onChange={(e) =>
                 onQuestionChange(questionData.id, {
                   ...questionData,
@@ -123,13 +124,12 @@ const questionCard = ({
                   question: e.target.value.trim(),
                 })
               }
-              rows={3}
             />
             <Trash2
-              onClick={() => onDelete(questionData.id)}
               className="cursor-pointer ml-3"
               color="red"
               size={24}
+              onClick={() => onDelete(questionData.id)}
             />
           </div>
         </CardContent>

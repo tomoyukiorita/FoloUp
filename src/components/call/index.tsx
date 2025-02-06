@@ -57,7 +57,7 @@ type transcriptType = {
   content: string;
 };
 
-const Call = ({ interview }: InterviewProps) => {
+function Call({ interview }: InterviewProps) {
   const { createResponse } = useResponses();
   const [lastInterviewerResponse, setLastInterviewerResponse] =
     useState<string>("");
@@ -112,6 +112,7 @@ const Call = ({ interview }: InterviewProps) => {
     const g = parseInt(hex?.substring(2, 4), 16);
     const b = parseInt(hex?.substring(4, 6), 16);
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
     return brightness > 155;
   };
 
@@ -133,6 +134,7 @@ const Call = ({ interview }: InterviewProps) => {
       webClient.stopConversation();
       setIsEnded(true);
     }
+
     return () => clearInterval(intervalId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCalling, time, currentTimeDuration]);
@@ -265,6 +267,7 @@ const Call = ({ interview }: InterviewProps) => {
 
       updateInterview();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEnded]);
 
   return (
@@ -285,7 +288,7 @@ const Call = ({ interview }: InterviewProps) => {
                         100
                       }%`,
                 }}
-              ></div>
+              />
             </div>
             <CardHeader className="items-center p-1">
               {!isEnded && (
@@ -365,11 +368,11 @@ const Call = ({ interview }: InterviewProps) => {
                         ? "black"
                         : "white",
                     }}
-                    onClick={startConversation}
                     disabled={
                       Loading ||
                       (!interview?.is_anonymous && (!isValidEmail || !name))
                     }
+                    onClick={startConversation}
                   >
                     {!Loading ? "Start Interview" : <MiniLoader />}
                   </Button>
@@ -527,8 +530,8 @@ const Call = ({ interview }: InterviewProps) => {
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <FeedbackForm
-                          onSubmit={handleFeedbackSubmit}
                           email={email}
+                          onSubmit={handleFeedbackSubmit}
                         />
                       </AlertDialogContent>
                     </AlertDialog>
@@ -571,6 +574,6 @@ const Call = ({ interview }: InterviewProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default Call;

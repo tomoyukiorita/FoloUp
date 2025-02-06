@@ -17,6 +17,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
     )
   ) {
     console.error("Invalid signature");
+
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
 

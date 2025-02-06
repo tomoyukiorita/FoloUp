@@ -16,7 +16,7 @@ interface Props {
   setOpen: (open: boolean) => void;
 }
 
-const QuestionsPopup = ({ interviewData, setProceed, setOpen }: Props) => {
+function QuestionsPopup({ interviewData, setProceed, setOpen }: Props) {
   const { user } = useClerk();
   const { organization } = useOrganization();
   const [isClicked, setIsClicked] = useState(false);
@@ -49,6 +49,7 @@ const QuestionsPopup = ({ interviewData, setProceed, setOpen }: Props) => {
           follow_up_count: 1,
         })),
       );
+
       return;
     }
     setQuestions(questions.filter((question) => question.id !== id));
@@ -108,10 +109,10 @@ const QuestionsPopup = ({ interviewData, setProceed, setOpen }: Props) => {
         <div className="relative flex justify-center w-full">
           <ChevronLeft
             className="absolute left-0 opacity-50 cursor-pointer hover:opacity-100 text-gray-600 mr-36"
+            size={30}
             onClick={() => {
               setProceed(false);
             }}
-            size={30}
           />
           <h1 className="text-2xl font-semibold">Create Interview</h1>
         </div>
@@ -129,12 +130,12 @@ const QuestionsPopup = ({ interviewData, setProceed, setOpen }: Props) => {
               onQuestionChange={handleInputChange}
             />
           ))}
-          <div ref={endOfListRef}></div>
+          <div ref={endOfListRef} />
         </ScrollArea>
         {questions.length < interviewData.question_count ? (
           <div
-            onClick={handleAddQuestion}
             className="border-indigo-600 opacity-75 hover:opacity-100 w-fit  rounded-full"
+            onClick={handleAddQuestion}
           >
             <Plus
               size={45}
@@ -159,13 +160,13 @@ const QuestionsPopup = ({ interviewData, setProceed, setOpen }: Props) => {
         value={description}
         className="h-fit mt-3 mx-2 py-2 border-2 rounded-md px-2 w-full border-gray-400"
         placeholder="Enter your interview description."
+        rows={3}
         onChange={(e) => {
           setDescription(e.target.value);
         }}
         onBlur={(e) => {
           setDescription(e.target.value.trim());
         }}
-        rows={3}
       />
       <div className="flex flex-row justify-end items-end w-full">
         <Button
@@ -186,5 +187,5 @@ const QuestionsPopup = ({ interviewData, setProceed, setOpen }: Props) => {
       </div>
     </div>
   );
-};
+}
 export default QuestionsPopup;

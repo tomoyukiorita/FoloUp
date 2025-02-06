@@ -32,7 +32,7 @@ type EditInterviewProps = {
   interview: Interview | undefined;
 };
 
-const EditInterview = ({ interview }: EditInterviewProps) => {
+function EditInterview({ interview }: EditInterviewProps) {
   const { interviewers } = useInterviewers();
   const { fetchInterviews } = useInterviews();
 
@@ -81,6 +81,7 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
           follow_up_count: 1,
         })),
       );
+
       return;
     }
     setQuestions(questions.filter((question) => question.id !== id));
@@ -111,7 +112,9 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
     };
 
     try {
-      if (!interview) return;
+      if (!interview) {
+        return;
+      }
       const response = await InterviewService.updateInterview(
         interviewData,
         interview?.id,
@@ -129,7 +132,9 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
   };
 
   const onDeleteInterviewClick = async () => {
-    if (!interview) return;
+    if (!interview) {
+      return;
+    }
 
     try {
       await InterviewService.deleteInterview(interview.id);
@@ -218,22 +223,22 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
           value={description}
           className="h-fit mt-3 ml-2 py-2 border-2 rounded-md w-[75%] px-2 border-gray-400"
           placeholder="Enter your interview description here."
+          rows={3}
           onChange={(e) => {
             setDescription(e.target.value);
           }}
           onBlur={(e) => {
             setDescription(e.target.value.trim());
           }}
-          rows={3}
         />
         <p className="mt-3 mb-1 ml-2 font-medium">Objective</p>
         <textarea
           value={objective}
           className="h-fit mt-3 ml-2 py-2 border-2 rounded-md w-[75%] px-2 border-gray-400"
           placeholder="Enter your interview objective here."
+          rows={3}
           onChange={(e) => setObjective(e.target.value)}
           onBlur={(e) => setObjective(e.target.value.trim())}
-          rows={3}
         />
         <div className="flex flex-row gap-3">
           <div>
@@ -243,10 +248,10 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
                 id="slider-3"
                 className=" h-32 pt-1 ml-2 overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide w-[27.5rem]"
               >
-                {interviewers.map((item, key) => (
+                {interviewers.map((item) => (
                   <div
                     className=" p-0 inline-block cursor-pointer hover:scale-105 ease-in-out duration-300  ml-1 mr-3 rounded-xl shrink-0 overflow-hidden"
-                    key={key}
+                    key={item.id}
                   >
                     <div
                       className={`w-[96px] overflow-hidden rounded-full ${
@@ -282,10 +287,10 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
             </span>
             <Switch
               checked={isAnonymous}
-              onCheckedChange={(checked) => setIsAnonymous(checked)}
               className={`ml-4 mt-1 border-2 border-gray-300 ${
                 isAnonymous ? "bg-indigo-600" : "bg-white"
               }`}
+              onCheckedChange={(checked) => setIsAnonymous(checked)}
             />
           </div>
           <span
@@ -355,11 +360,11 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
               onQuestionChange={handleInputChange}
             />
           ))}
-          <div ref={endOfListRef}></div>
+          <div ref={endOfListRef} />
           {questions.length < numQuestions ? (
             <div
-              onClick={handleAddQuestion}
               className="border-indigo-600 opacity-75 hover:opacity-100 w-fit text-center rounded-full mx-auto"
+              onClick={handleAddQuestion}
             >
               <Plus
                 size={45}
@@ -374,6 +379,6 @@ const EditInterview = ({ interview }: EditInterviewProps) => {
       </div>
     </div>
   );
-};
+}
 
 export default EditInterview;

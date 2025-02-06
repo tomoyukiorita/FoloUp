@@ -60,6 +60,7 @@ export async function GET(res: Response) {
     );
   } catch (error) {
     logger.error("Error creating interviewers:");
+
     return NextResponse.json(
       { error: "Failed to create interviewers" },
       { status: 500 },

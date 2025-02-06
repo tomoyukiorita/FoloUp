@@ -9,6 +9,7 @@ const updateOrganization = async (payload: any, id: string) => {
     .eq("id", id);
   if (error) {
     console.log(error);
+
     return [];
   }
 
@@ -33,6 +34,7 @@ const getClientById = async (
 
       if (error) {
         console.log(error);
+
         return [];
       }
 
@@ -47,6 +49,7 @@ const getClientById = async (
 
       if (error) {
         console.log(error);
+
         return [];
       }
 
@@ -56,6 +59,7 @@ const getClientById = async (
     return data ? data[0] : null;
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -77,6 +81,7 @@ const getOrganizationById = async (
 
       if (error) {
         console.log(error);
+
         return [];
       }
 
@@ -91,6 +96,7 @@ const getOrganizationById = async (
 
       if (error) {
         console.log(error);
+
         return [];
       }
 
@@ -100,6 +106,7 @@ const getOrganizationById = async (
     return data ? data[0] : null;
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };

@@ -19,6 +19,7 @@ const providers = ({ children }: ThemeProviderProps) => {
     ResponseProvider,
     ClientProvider,
   ]);
+
   return (
     <NextThemesProvider attribute="class" defaultTheme="light">
       <QueryClientProvider client={queryClient}>

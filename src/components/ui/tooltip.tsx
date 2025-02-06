@@ -11,9 +11,9 @@ type TooltipProps = React.ComponentPropsWithoutRef<
   typeof TooltipPrimitive.Root
 >;
 
-const Tooltip: React.FC<TooltipProps> = (props) => (
-  <TooltipPrimitive.Root delayDuration={300} {...props} />
-);
+function Tooltip(props:   TooltipProps) {
+  return <TooltipPrimitive.Root delayDuration={300} {...props} />;
+}
 
 const TooltipTrigger = TooltipPrimitive.Trigger;
 

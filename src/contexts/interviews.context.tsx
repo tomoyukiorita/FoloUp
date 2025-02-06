@@ -27,9 +27,7 @@ interface InterviewProviderProps {
   children: ReactNode;
 }
 
-export const InterviewProvider: React.FC<InterviewProviderProps> = ({
-  children,
-}) => {
+export function InterviewProvider({ children }: InterviewProviderProps) {
   const [interviews, setInterviews] = useState<Interview[]>([]);
   const { user } = useClerk();
   const { organization } = useOrganization();
@@ -52,6 +50,7 @@ export const InterviewProvider: React.FC<InterviewProviderProps> = ({
 
   const getInterviewById = async (interviewId: string) => {
     const response = await InterviewService.getInterviewById(interviewId);
+
     return response;
   };
 
@@ -76,7 +75,7 @@ export const InterviewProvider: React.FC<InterviewProviderProps> = ({
       {children}
     </InterviewContext.Provider>
   );
-};
+}
 
 export const useInterviews = () => {
   const value = useContext(InterviewContext);

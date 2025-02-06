@@ -13,6 +13,7 @@ const getAllInterviews = async (userId: string, organizationId: string) => {
     return [...(clientData || [])];
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -27,6 +28,7 @@ const getInterviewById = async (id: string) => {
     return data ? data[0] : null;
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -38,6 +40,7 @@ const updateInterview = async (payload: any, id: string) => {
     .eq("id", id);
   if (error) {
     console.log(error);
+
     return [];
   }
 
@@ -51,6 +54,7 @@ const deleteInterview = async (id: string) => {
     .eq("id", id);
   if (error) {
     console.log(error);
+
     return [];
   }
 
@@ -67,6 +71,7 @@ const getAllRespondents = async (interviewId: string) => {
     return data || [];
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -77,6 +82,7 @@ const createInterview = async (payload: any) => {
     .insert({ ...payload });
   if (error) {
     console.log(error);
+
     return [];
   }
 

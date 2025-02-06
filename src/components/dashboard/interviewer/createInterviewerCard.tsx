@@ -85,8 +85,8 @@ const createInterviewerCard = () => {
           </CardTitle>
           <div className="mt-3 p-2 flex flex-row justify-center space-x-10 items-center">
             <div
-              onClick={() => setGallery(true)}
               className=" flex flex-col items-center justify-center overflow-hidden border-4 border-gray-500 rounded-xl h-56 w-52"
+              onClick={() => setGallery(true)}
             >
               {image ? (
                 <Image
@@ -202,12 +202,12 @@ const createInterviewerCard = () => {
             <div className="flex flex-row flex-wrap justify-center items-center">
               {avatars.map((item, key) => (
                 <div
-                  key={key}
+                  key={item.id}
+                  className="flex flex-col items-center justify-center border-2 border-gray-500 rounded-xl overflow-hidden m-2 cursor-pointer"
                   onClick={() => {
                     setImage(item.img);
                     setGallery(false);
                   }}
-                  className="flex flex-col items-center justify-center border-2 border-gray-500 rounded-xl overflow-hidden m-2 cursor-pointer"
                 >
                   <Image alt="avatar" width={125} height={100} src={item.img} />
                 </div>

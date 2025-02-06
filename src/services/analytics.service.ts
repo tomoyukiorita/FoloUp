@@ -68,6 +68,7 @@ export const generateInterviewAnalytics = async (payload: {
     return { analytics: analyticsResponse, status: 200 };
   } catch (error) {
     console.error("Error in OpenAI request:", error);
+
     return { error: "internal server error", status: 500 };
   }
 };

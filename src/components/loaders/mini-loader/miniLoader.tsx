@@ -1,11 +1,11 @@
 import styles from "./mini-loader.module.css";
 
-const MiniLoader = () => {
+function MiniLoader() {
   return (
     <div>
-      <div className={styles.loader}></div>
+      <div className={styles.loader} />
     </div>
   );
-};
+}
 
 export default MiniLoader;

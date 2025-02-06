@@ -11,7 +11,7 @@ interface SharePopupProps {
   shareContent: string;
 }
 
-const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
+function SharePopup({ open, onClose, shareContent }: SharePopupProps) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedEmbed, setCopiedEmbed] = useState(false);
   const [url, setUrl] = useState<string>("Loading...");
@@ -70,7 +70,9 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
     );
   };
 
-  if (!open) return null;
+  if (!open) {
+    return null;
+  }
 
   return (
     <Modal open={open} modalId="2" onClose={onClose}>
@@ -79,8 +81,8 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
         <div className="h-auto rounded-xl">
           <Tabs
             value={activeTab}
-            onValueChange={setActiveTab}
             className="flex flex-col h-full"
+            onValueChange={setActiveTab}
           >
             <div className="w-auto">
               <TabsList>
@@ -95,14 +97,14 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
                 <div className="mb-4">
                   <input
                     type="text"
-                    readOnly
                     value={url}
                     className="w-full p-2 border border-gray-300 bg-gray-100 rounded"
+                    readOnly
                   />
                 </div>
                 <Button
-                  onClick={copyLinkToClipboard}
                   className="flex items-center bg-indigo-600"
+                  onClick={copyLinkToClipboard}
                 >
                   <Copy size={16} className="mr-2" />
                   {copiedLink ? "Copied" : "Copy URL"}
@@ -112,9 +114,9 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
                 <div className="mb-4">
                   <input
                     type="text"
-                    readOnly
                     value={embedCode}
                     className="w-full p-2 border border-gray-300 bg-gray-100 rounded"
+                    readOnly
                   />
                 </div>
                 <div className="flex space-x-4 mb-4">
@@ -128,12 +130,12 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
                       min="1050"
                       placeholder="Width"
                       value={embedWidth}
+                      className="w-full p-2 border border-gray-300 rounded"
                       onChange={(e) => setEmbedWidth(Number(e.target.value))}
                       onBlur={(e) => {
                         const value = Math.max(1050, Number(e.target.value));
                         setEmbedWidth(value);
                       }}
-                      className="w-full p-2 border border-gray-300 rounded"
                     />
                   </div>
                   <div className="flex flex-col w-1/2">
@@ -146,18 +148,18 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
                       min="700"
                       placeholder="Height"
                       value={embedHeight}
+                      className="w-full p-2 border border-gray-300 rounded"
                       onChange={(e) => setEmbedHeight(Number(e.target.value))}
                       onBlur={(e) => {
                         const value = Math.max(700, Number(e.target.value));
                         setEmbedHeight(value);
                       }}
-                      className="w-full p-2 border border-gray-300 rounded"
                     />
                   </div>
                 </div>
                 <Button
-                  onClick={copyEmbedToClipboard}
                   className="flex items-center bg-indigo-600"
+                  onClick={copyEmbedToClipboard}
                 >
                   <Copy size={16} className="mr-2" />
                   {copiedEmbed ? "Copied" : "Copy Embed Code"}
@@ -169,6 +171,6 @@ const SharePopup = ({ open, onClose, shareContent }: SharePopupProps) => {
       </div>
     </Modal>
   );
-};
+}
 
 export default SharePopup;

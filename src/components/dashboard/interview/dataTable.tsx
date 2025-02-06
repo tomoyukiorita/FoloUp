@@ -37,7 +37,7 @@ interface DataTableProps {
   interviewId: string;
 }
 
-const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
+function DataTable({ data, interviewId }: DataTableProps) {
   const [sorting, setSorting] = useState<SortingState>([
     { id: "overallScore", desc: true },
   ]);
@@ -61,8 +61,13 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
   }, []);
 
   const customSortingFn = (a: any, b: any) => {
-    if (a === null || a === undefined) return -1;
-    if (b === null || b === undefined) return 1;
+    if (a === null || a === undefined) {
+      return -1;
+    }
+    if (b === null || b === undefined) {
+      return 1;
+    }
+
     return a - b;
   };
 
@@ -73,8 +78,8 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
         return (
           <Button
             variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             className={`w-full justify-start font-semibold text-[15px] mb-1 ${column.getIsSorted() ? "text-indigo-600" : "text-black"}`}
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
             Name
             <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -114,6 +119,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
       sortingFn: (rowA, rowB, columnId) => {
         const a = rowA.getValue(columnId) as string;
         const b = rowB.getValue(columnId) as string;
+
         return a.toLowerCase().localeCompare(b.toLowerCase());
       },
     },
@@ -123,8 +129,8 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
         return (
           <Button
             variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             className={`w-full justify-start font-semibold text-[15px] mb-1 ${column.getIsSorted() ? "text-indigo-600" : "text-black"}`}
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
             Overall Score
             <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -139,6 +145,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
       sortingFn: (rowA, rowB, columnId) => {
         const a = rowA.getValue(columnId) as number | null;
         const b = rowB.getValue(columnId) as number | null;
+
         return customSortingFn(a, b);
       },
     },
@@ -148,8 +155,8 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
         return (
           <Button
             variant="ghost"
-            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
             className={`w-full justify-start font-semibold text-[15px] mb-1 ${column.getIsSorted() ? "text-indigo-600" : "text-black"}`}
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           >
             Communication Score
             <ArrowUpDown className="ml-2 h-4 w-4" />
@@ -164,6 +171,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
       sortingFn: (rowA, rowB, columnId) => {
         const a = rowA.getValue(columnId) as number | null;
         const b = rowB.getValue(columnId) as number | null;
+
         return customSortingFn(a, b);
       },
     },
@@ -176,6 +184,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
       ),
       cell: ({ row }) => {
         const summary = row.getValue("callSummary") as string;
+
         return (
           <div className="text-xs text-justify pr-4">
             <div
@@ -247,6 +256,6 @@ const DataTable: React.FC<DataTableProps> = ({ data, interviewId }) => {
       </Table>
     </div>
   );
-};
+}
 
 export default DataTable;

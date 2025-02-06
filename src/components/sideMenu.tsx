@@ -4,9 +4,10 @@ import React from "react";
 import { PlayCircleIcon, SpeechIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
-const SideMenu = () => {
+function SideMenu() {
   const pathname = usePathname();
   const router = useRouter();
+
   return (
     <div className="z-[10] bg-slate-100 p-6 w-[200px] fixed top-[64px] left-0 h-full">
       <div className="flex flex-col gap-1">
@@ -38,6 +39,6 @@ const SideMenu = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SideMenu;

@@ -20,6 +20,7 @@ export async function parsePdf(formData: FormData) {
     };
   } catch (error) {
     console.error("Error parsing PDF:", error);
+
     return {
       success: false,
       error: "Failed to parse PDF",

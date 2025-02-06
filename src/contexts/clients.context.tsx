@@ -17,7 +17,7 @@ interface ClientProviderProps {
   children: ReactNode;
 }
 
-export const ClientProvider: React.FC<ClientProviderProps> = ({ children }) => {
+export function ClientProvider({ children }: ClientProviderProps) {
   const [client, setClient] = useState<User>();
   const { user } = useClerk();
   const { organization } = useOrganization();
@@ -75,7 +75,7 @@ export const ClientProvider: React.FC<ClientProviderProps> = ({ children }) => {
       {children}
     </ClientContext.Provider>
   );
-};
+}
 
 export const useClient = () => {
   const value = useContext(ClientContext);

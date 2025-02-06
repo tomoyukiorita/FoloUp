@@ -43,11 +43,11 @@ type CallProps = {
   onCandidateStatusChange: (callId: string, newStatus: string) => void;
 };
 
-const CallInfo = ({
+function CallInfo({
   call_id,
   onDeleteResponse,
   onCandidateStatusChange,
-}: CallProps) => {
+}: CallProps) {
   const [call, setCall] = useState<CallData>();
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [email, setEmail] = useState<string>("");
@@ -216,25 +216,25 @@ const CallInfo = ({
                       <SelectContent>
                         <SelectItem value={CandidateStatus.NO_STATUS}>
                           <div className="flex items-center">
-                            <div className="w-3 h-3 bg-gray-400 rounded-full mr-2"></div>
+                            <div className="w-3 h-3 bg-gray-400 rounded-full mr-2" />
                             No Status
                           </div>
                         </SelectItem>
                         <SelectItem value={CandidateStatus.NOT_SELECTED}>
                           <div className="flex items-center">
-                            <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                            <div className="w-3 h-3 bg-red-500 rounded-full mr-2" />
                             Not Selected
                           </div>
                         </SelectItem>
                         <SelectItem value={CandidateStatus.POTENTIAL}>
                           <div className="flex items-center">
-                            <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                            <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2" />
                             Potential
                           </div>
                         </SelectItem>
                         <SelectItem value={CandidateStatus.SELECTED}>
                           <div className="flex items-center">
-                            <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                            <div className="w-3 h-3 bg-green-500 rounded-full mr-2" />
                             Selected
                           </div>
                         </SelectItem>
@@ -415,7 +415,7 @@ const CallInfo = ({
                 <ScrollArea className="rounded-md h-72 text-sm mt-3 py-3 leading-6 overflow-y-scroll whitespace-pre-line px-2">
                   {analytics?.questionSummaries.map((qs, index) => (
                     <QuestionAnswerCard
-                      key={index}
+                      key={qs.question}
                       questionNumber={index + 1}
                       question={qs.question}
                       answer={qs.summary}
@@ -429,14 +429,15 @@ const CallInfo = ({
             <ScrollArea className="rounded-2xl text-sm h-96  overflow-y-auto whitespace-pre-line px-2">
               <div
                 className="text-sm p-4 rounded-2xl leading-5 bg-slate-50"
+                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{ __html: marked(transcript) }}
-              ></div>
+              />
             </ScrollArea>
           </div>
         </>
       )}
     </div>
   );
-};
+}
 
 export default CallInfo;

@@ -8,7 +8,7 @@ interface Props {
   interviewer: Interviewer | undefined;
 }
 
-const InterviewerDetailsModal = ({ interviewer }: Props) => {
+function InterviewerDetailsModal({ interviewer }: Props) {
   return (
     <div className="text-center w-[40rem]">
       <CardTitle className="text-3xl text mt-0 p-0 font-semibold ">
@@ -96,6 +96,6 @@ const InterviewerDetailsModal = ({ interviewer }: Props) => {
       </div>
     </div>
   );
-};
+}
 
 export default InterviewerDetailsModal;

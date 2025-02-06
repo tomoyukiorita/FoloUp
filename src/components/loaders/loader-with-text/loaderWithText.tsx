@@ -1,6 +1,6 @@
 import { CircularProgress } from "@nextui-org/progress";
 
-const LoaderWithText = () => {
+function LoaderWithText() {
   return (
     <div className="relative flex flex-col items-center justify-center h-screen">
       <CircularProgress
@@ -18,6 +18,6 @@ const LoaderWithText = () => {
       </div>
     </div>
   );
-};
+}
 
 export default LoaderWithText;

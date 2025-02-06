@@ -10,6 +10,7 @@ const createResponse = async (payload: any) => {
 
   if (error) {
     console.log(error);
+
     return [];
   }
 
@@ -23,6 +24,7 @@ const saveResponse = async (payload: any, call_id: string) => {
     .eq("call_id", call_id);
   if (error) {
     console.log(error);
+
     return [];
   }
 
@@ -42,6 +44,7 @@ const getAllResponses = async (interviewId: string) => {
     return data || [];
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -56,6 +59,7 @@ const getAllEmailAddressesForInterview = async (interviewId: string) => {
     return data || [];
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -70,6 +74,7 @@ const getResponseByCallId = async (id: string) => {
     return data ? data[0] : null;
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -81,6 +86,7 @@ const deleteResponse = async (id: string) => {
     .eq("call_id", id);
   if (error) {
     console.log(error);
+
     return [];
   }
 
@@ -94,8 +100,10 @@ const updateResponse = async (payload: any, call_id: string) => {
     .eq("call_id", call_id);
   if (error) {
     console.log(error);
+
     return [];
   }
+
   return data;
 };
 

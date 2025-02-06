@@ -49,7 +49,7 @@ interface Props {
 
 const base_url = process.env.NEXT_PUBLIC_LIVE_URL;
 
-const InterviewHome = ({ params, searchParams }: Props) => {
+function InterviewHome({ params, searchParams }: Props) {
   const [interview, setInterview] = useState<Interview>();
   const [responses, setResponses] = useState<Response[]>();
   const { getInterviewById } = useInterviews();
@@ -244,8 +244,13 @@ const InterviewHome = ({ params, searchParams }: Props) => {
   };
 
   const filterResponses = () => {
-    if (!responses) return [];
-    if (filterStatus == "ALL") return responses;
+    if (!responses) {
+      return [];
+    }
+    if (filterStatus == "ALL") {
+      return responses;
+    }
+
     return responses?.filter(
       (response) => response?.candidate_status == filterStatus,
     );
@@ -265,7 +270,7 @@ const InterviewHome = ({ params, searchParams }: Props) => {
             <div
               className="w-5 h-5 rounded-full border-2 border-white shadow"
               style={{ backgroundColor: iconColor }}
-            ></div>
+            />
 
             <div className="flex flex-row gap-3 my-auto">
               <UserIcon className="my-auto" size={16} />:{" "}
@@ -390,10 +395,10 @@ const InterviewHome = ({ params, searchParams }: Props) => {
                   <span className="ms-3 my-auto text-sm">Active</span>
                   <Switch
                     checked={isActive}
-                    onCheckedChange={handleToggle}
                     className={`ms-3 my-auto ${
                       isActive ? "bg-indigo-600" : "bg-[#E6E7EB]"
                     }`}
+                    onCheckedChange={handleToggle}
                   />
                 </>
               )}
@@ -414,31 +419,31 @@ const InterviewHome = ({ params, searchParams }: Props) => {
                   <SelectContent>
                     <SelectItem value={CandidateStatus.NO_STATUS}>
                       <div className="flex items-center">
-                        <div className="w-3 h-3 bg-gray-400 rounded-full mr-2"></div>
+                        <div className="w-3 h-3 bg-gray-400 rounded-full mr-2" />
                         No Status
                       </div>
                     </SelectItem>
                     <SelectItem value={CandidateStatus.NOT_SELECTED}>
                       <div className="flex items-center">
-                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                        <div className="w-3 h-3 bg-red-500 rounded-full mr-2" />
                         Not Selected
                       </div>
                     </SelectItem>
                     <SelectItem value={CandidateStatus.POTENTIAL}>
                       <div className="flex items-center">
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                        <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2" />
                         Potential
                       </div>
                     </SelectItem>
                     <SelectItem value={CandidateStatus.SELECTED}>
                       <div className="flex items-center">
-                        <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full mr-2" />
                         Selected
                       </div>
                     </SelectItem>
                     <SelectItem value="ALL">
                       <div className="flex items-center">
-                        <div className="w-3 h-3 border-2 border-gray-300 rounded-full mr-2"></div>
+                        <div className="w-3 h-3 border-2 border-gray-300 rounded-full mr-2" />
                         All
                       </div>
                     </SelectItem>
@@ -455,23 +460,23 @@ const InterviewHome = ({ params, searchParams }: Props) => {
                           ? "bg-indigo-200"
                           : "border-indigo-100"
                       } flex flex-row justify-between cursor-pointer w-full`}
+                      key={response?.id}
                       onClick={() => {
                         router.push(
                           `/interviews/${params.interviewId}?call=${response.call_id}`,
                         );
                         handleResponseClick(response);
                       }}
-                      key={response?.id}
                     >
                       <div className="flex flex-row gap-1 items-center w-full">
                         {response.candidate_status === "NOT_SELECTED" ? (
-                          <div className="w-[5%] h-full bg-red-500 rounded-sm"></div>
+                          <div className="w-[5%] h-full bg-red-500 rounded-sm" />
                         ) : response.candidate_status === "POTENTIAL" ? (
-                          <div className="w-[5%] h-full bg-yellow-500 rounded-sm"></div>
+                          <div className="w-[5%] h-full bg-yellow-500 rounded-sm" />
                         ) : response.candidate_status === "SELECTED" ? (
-                          <div className="w-[5%] h-full bg-green-500 rounded-sm"></div>
+                          <div className="w-[5%] h-full bg-green-500 rounded-sm" />
                         ) : (
-                          <div className="w-[5%] h-full bg-gray-400 rounded-sm"></div>
+                          <div className="w-[5%] h-full bg-gray-400 rounded-sm" />
                         )}
                         <div className="flex items-center justify-between w-full">
                           <div className="flex flex-col my-auto">
@@ -562,28 +567,28 @@ const InterviewHome = ({ params, searchParams }: Props) => {
           <ChromePicker
             disableAlpha={true}
             color={themeColor}
-            onChange={handleColorChange}
             styles={{
               default: {
                 picker: { width: "100%" },
               },
             }}
+            onChange={handleColorChange}
           />
         </div>
       </Modal>
       {isSharePopupOpen && (
         <SharePopup
           open={isSharePopupOpen}
-          onClose={closeSharePopup}
           shareContent={
             interview?.readable_slug
               ? `${base_url}/call/${interview?.readable_slug}`
               : (interview?.url as string)
           }
+          onClose={closeSharePopup}
         />
       )}
     </div>
   );
-};
+}
 
 export default InterviewHome;

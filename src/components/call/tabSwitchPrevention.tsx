@@ -35,7 +35,7 @@ const useTabSwitchPrevention = () => {
   return { isDialogOpen, tabSwitchCount, handleUnderstand };
 };
 
-const TabSwitchWarning = () => {
+function TabSwitchWarning() {
   const { isDialogOpen, tabSwitchCount, handleUnderstand } =
     useTabSwitchPrevention();
 
@@ -60,6 +60,6 @@ const TabSwitchWarning = () => {
       </AlertDialogContent>
     </AlertDialog>
   );
-};
+}
 
 export { TabSwitchWarning, useTabSwitchPrevention };

@@ -19,7 +19,7 @@ interface Props {
 
 const base_url = process.env.NEXT_PUBLIC_LIVE_URL;
 
-const InterviewerCard = ({ name, img, id, url, readableSlug }: Props) => {
+function InterviewerCard({ name, img, id, url, readableSlug }: Props) {
   const [copied, setCopied] = useState(false);
   const [responseCount, setResponseCount] = useState<number | null>(null);
   const [isFetching, setIsFetching] = useState(false);
@@ -151,6 +151,6 @@ const InterviewerCard = ({ name, img, id, url, readableSlug }: Props) => {
       </Card>
     </a>
   );
-};
+}
 
 export default InterviewerCard;

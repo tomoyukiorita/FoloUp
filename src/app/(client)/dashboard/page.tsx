@@ -13,7 +13,7 @@ import Modal from "@/components/dashboard/modal";
 import { Gem, Plus } from "lucide-react";
 import Image from "next/image";
 
-const Interviews = () => {
+function Interviews() {
   const { interviews, interviewsLoading } = useInterviews();
   const { organization } = useOrganization();
   const [loading, setLoading] = useState<boolean>(true);
@@ -22,17 +22,17 @@ const Interviews = () => {
     useState<number>(10);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const InterviewsLoader = () => {
+  function InterviewsLoader() {
     return (
       <>
         <div className="flex flex-row">
-          <div className="h-60 w-56 ml-1 mr-3 mt-3 flex-none animate-pulse rounded-xl bg-gray-300"></div>
-          <div className="h-60 w-56 ml-1 mr-3  mt-3 flex-none animate-pulse rounded-xl bg-gray-300"></div>
-          <div className="h-60 w-56 ml-1 mr-3 mt-3 flex-none animate-pulse rounded-xl bg-gray-300"></div>
+          <div className="h-60 w-56 ml-1 mr-3 mt-3 flex-none animate-pulse rounded-xl bg-gray-300" />
+          <div className="h-60 w-56 ml-1 mr-3  mt-3 flex-none animate-pulse rounded-xl bg-gray-300" />
+          <div className="h-60 w-56 ml-1 mr-3 mt-3 flex-none animate-pulse rounded-xl bg-gray-300" />
         </div>
       </>
     );
-  };
+  }
 
   useEffect(() => {
     const fetchOrganizationData = async () => {
@@ -181,10 +181,10 @@ const Interviews = () => {
                   </div>
                 </Modal>
               )}
-              {interviews.map((item, key) => (
+              {interviews.map((item) => (
                 <InterviewCard
                   id={item.id}
-                  key={key}
+                  key={item.id}
                   name={item.name}
                   img={`${
                     item.interviewer_id == BigInt(1)
@@ -203,6 +203,6 @@ const Interviews = () => {
       </div>
     </main>
   );
-};
+}
 
 export default Interviews;

@@ -25,9 +25,7 @@ interface InterviewerProviderProps {
   children: ReactNode;
 }
 
-export const InterviewerProvider: React.FC<InterviewerProviderProps> = ({
-  children,
-}) => {
+export function InterviewerProvider({ children }: InterviewerProviderProps) {
   const [interviewers, setInterviewers] = useState<Interviewer[]>([]);
   const { user } = useClerk();
   const [interviewersLoading, setInterviewersLoading] = useState(true);
@@ -70,7 +68,7 @@ export const InterviewerProvider: React.FC<InterviewerProviderProps> = ({
       {children}
     </InterviewerContext.Provider>
   );
-};
+}
 
 export const useInterviewers = () => {
   const value = useContext(InterviewerContext);

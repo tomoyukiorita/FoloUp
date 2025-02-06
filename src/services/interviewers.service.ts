@@ -13,12 +13,14 @@ const getAllInterviewers = async (clientId: string = "") => {
         `Error fetching interviewers for clientId ${clientId}:`,
         clientError,
       );
+
       return [];
     }
 
     return clientData || [];
   } catch (error) {
     console.log(error);
+
     return [];
   }
 };
@@ -34,11 +36,13 @@ const createInterviewer = async (payload: any) => {
 
   if (checkError && checkError.code !== "PGRST116") {
     console.error("Error checking existing interviewer:", checkError);
+
     return null;
   }
 
   if (existingInterviewer) {
     console.error("An interviewer with this name already exists");
+
     return null;
   }
 
@@ -48,6 +52,7 @@ const createInterviewer = async (payload: any) => {
 
   if (error) {
     console.error("Error creating interviewer:", error);
+
     return null;
   }
 
@@ -63,6 +68,7 @@ const getInterviewer = async (interviewerId: string) => {
 
   if (interviewerError) {
     console.error("Error fetching interviewer:", interviewerError);
+
     return null;
   }
 

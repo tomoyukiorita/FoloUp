@@ -17,11 +17,10 @@ interface ResponseProviderProps {
   children: React.ReactNode;
 }
 
-export const ResponseProvider: React.FC<ResponseProviderProps> = ({
-  children,
-}) => {
+export function ResponseProvider({ children }: ResponseProviderProps) {
   const createResponse = async (payload: any) => {
     const data = await ResponseService.createResponse({ ...payload });
+
     return data;
   };
 
@@ -39,9 +38,10 @@ export const ResponseProvider: React.FC<ResponseProviderProps> = ({
       {children}
     </ResponseContext.Provider>
   );
-};
+}
 
 export const useResponses = () => {
   const value = useContext(ResponseContext);
+
   return value;
 };

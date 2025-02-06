@@ -7,7 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export function convertToAscii(inputString: string) {
   // remove non ascii characters
-  const asciiString = inputString.replace(/[^\x00-\x7F]+/g, "");
+  const asciiString = inputString.replace(/[^\x20-\x7F]+/g, "");
+
   return asciiString;
 }
 
@@ -32,11 +33,13 @@ export function formatTimestampToDateHHMM(timestamp: string): string {
 
 export function testEmail(email: string) {
   const re = /\S+@\S+\.\S+/;
+
   return re.test(email);
 }
 
 export function convertSecondstoMMSS(seconds: number) {
   const minutes = Math.trunc(seconds / 60);
   const remainingSeconds = Math.round(seconds % 60);
+
   return `${minutes}m ${remainingSeconds.toString().padStart(2, "0")}s`;
 }

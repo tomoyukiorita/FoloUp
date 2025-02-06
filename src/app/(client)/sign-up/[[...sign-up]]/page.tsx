@@ -1,6 +1,6 @@
 import { SignUp } from "@clerk/nextjs";
 
-const SignUpPage = () => {
+function SignUpPage() {
   return (
     <div className="flex items-center justify-center h-screen w-full bg-white absolute top-0 left-0 z-50">
       <div className="hidden md:block align-middle my-auto">
@@ -20,5 +20,5 @@ const SignUpPage = () => {
       </div>
     </div>
   );
-};
+}
 export default SignUpPage;

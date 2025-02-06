@@ -6,11 +6,11 @@ interface QuestionCardProps {
   answer: string;
 }
 
-const QuestionAnswerCard = ({
+function QuestionAnswerCard({
   questionNumber,
   question,
   answer,
-}: QuestionCardProps) => {
+}: QuestionCardProps) {
   return (
     <>
       <div className=" shadow-md mb-2 bg-slate-50 rounded-2xl py-2">
@@ -26,5 +26,5 @@ const QuestionAnswerCard = ({
       </div>
     </>
   );
-};
+}
 export default QuestionAnswerCard;

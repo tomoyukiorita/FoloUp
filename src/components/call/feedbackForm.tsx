@@ -14,10 +14,7 @@ interface FeedbackFormProps {
   email: string;
 }
 
-export const FeedbackForm: React.FC<FeedbackFormProps> = ({
-  onSubmit,
-  email,
-}) => {
+export function FeedbackForm({ onSubmit, email }: FeedbackFormProps) {
   const [satisfaction, setSatisfaction] = useState<SatisfactionLevel>(
     SatisfactionLevel.Moderate,
   );
@@ -39,11 +36,11 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
         Are you satisfied with the platform?
       </h3>
       <div className="flex justify-center space-x-4 mb-4">
-        {Object.values(SatisfactionLevel).map((emoji, index) => (
+        {Object.values(SatisfactionLevel).map((emoji) => (
           <button
-            key={index}
-            onClick={() => setSatisfaction(emoji)}
+            key={emoji}
             className={`text-3xl ${satisfaction === emoji ? "border-2 border-indigo-600" : ""}`}
+            onClick={() => setSatisfaction(emoji)}
           >
             {emoji}
           </button>
@@ -51,17 +48,17 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
       </div>
       <Textarea
         value={feedback}
-        onChange={(e) => setFeedback(e.target.value)}
         placeholder="Add your feedback here"
         className="mb-4"
+        onChange={(e) => setFeedback(e.target.value)}
       />
       <Button
-        onClick={handleSubmit}
         disabled={satisfaction === null && feedback.trim() === ""}
         className="w-full bg-indigo-600 text-white"
+        onClick={handleSubmit}
       >
         Submit Feedback
       </Button>
     </div>
   );
-};
+}

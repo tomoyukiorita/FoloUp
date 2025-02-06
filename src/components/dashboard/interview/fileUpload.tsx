@@ -14,13 +14,13 @@ type Props = {
   setUploadedDocumentContext: (context: string) => void;
 };
 
-const FileUpload = ({
+function FileUpload({
   isUploaded,
   setIsUploaded,
   fileName,
   setFileName,
   setUploadedDocumentContext,
-}: Props) => {
+}: Props) {
   const [uploading, setUploading] = useState(false);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -35,6 +35,7 @@ const FileUpload = ({
           position: "bottom-right",
           duration: 3000,
         });
+
         return;
       }
 
@@ -61,6 +62,7 @@ const FileUpload = ({
       }
     },
   });
+
   return (
     <div className="p-2 bg-white rounded-xl w-full h-24">
       {!isUploaded ? (
@@ -96,6 +98,6 @@ const FileUpload = ({
       )}
     </div>
   );
-};
+}
 
 export default FileUpload;
