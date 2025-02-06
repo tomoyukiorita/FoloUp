@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Call from "@/components/call";
 import Image from "next/image";
 import { ArrowUpRightSquareIcon } from "lucide-react";
-import { Interview } from "@/types/interface";
+import { Interview } from "@/types/interview";
 import LoaderWithText from "@/components/loaders/loader-with-text/loaderWithText";
 
 type Props = {

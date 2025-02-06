@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useInterviewers } from "@/contexts/interviewers.context";
-import { InterviewBase, Question } from "@/types/interface";
+import { InterviewBase, Question } from "@/types/interview";
 import { ChevronRight, ChevronLeft, Info } from "lucide-react";
 import Image from "next/image";
 import { CardTitle } from "@/components/ui/card";
@@ -12,7 +12,7 @@ import { Switch } from "@/components/ui/switch";
 import FileUpload from "../fileUpload";
 import Modal from "@/components/dashboard/modal";
 import InterviewerDetailsModal from "@/components/dashboard/interviewer/interviewerDetailsModal";
-import { Interviewer } from "@/types/interface";
+import { Interviewer } from "@/types/interviewer";
 
 interface Props {
   open: boolean;

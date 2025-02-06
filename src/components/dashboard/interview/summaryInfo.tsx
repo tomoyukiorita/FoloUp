@@ -1,11 +1,13 @@
 "use client";
 
-import { Interview, Interviewer, Response } from "@/types/interface";
+import { Interview } from "@/types/interview";
+import { Interviewer } from "@/types/interviewer";
+import { Response } from "@/types/response";
 import React, { useEffect, useState } from "react";
 import { UserCircleIcon, SmileIcon, Info } from "lucide-react";
 import { useInterviewers } from "@/contexts/interviewers.context";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { CandidateStatus } from "@/types/enum";
+import { CandidateStatus } from "@/lib/enum";
 import { convertSecondstoMMSS } from "@/lib/utils";
 import Image from "next/image";
 import {

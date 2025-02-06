@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { FeedbackData } from "@/types/interface";
+import { FeedbackData } from "@/types/response";
 
 enum SatisfactionLevel {
   Positive = "😀",

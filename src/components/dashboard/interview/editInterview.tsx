@@ -1,6 +1,6 @@
 "use client";
 
-import { Interview, Question } from "@/types/interface";
+import { Interview, Question } from "@/types/interview";
 import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Plus, SaveIcon, TrashIcon } from "lucide-react";

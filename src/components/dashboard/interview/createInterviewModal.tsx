@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LoaderWithLogo from "@/components/loaders/loader-with-logo/loaderWithLogo";
 import DetailsPopup from "@/components/dashboard/interview/create-popup/details";
 import QuestionsPopup from "@/components/dashboard/interview/create-popup/questions";
-import { InterviewBase } from "@/types/interface";
+import { InterviewBase } from "@/types/interview";
 
 interface Props {
   open: boolean;

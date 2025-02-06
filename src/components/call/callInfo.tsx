@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Analytics, CallData } from "@/types/interface";
+import { Analytics, CallData } from "@/types/response";
 import axios from "axios";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import ReactAudioPlayer from "react-audio-player";
@@ -34,7 +34,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CandidateStatus } from "@/types/enum";
+import { CandidateStatus } from "@/lib/enum";
 import { ArrowLeft } from "lucide-react";
 
 type CallProps = {

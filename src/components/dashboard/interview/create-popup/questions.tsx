@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useClerk, useOrganization } from "@clerk/nextjs";
-import { InterviewBase, Question } from "@/types/interface";
+import { InterviewBase, Question } from "@/types/interview";
 import { useInterviews } from "@/contexts/interviews.context";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import QuestionCard from "@/components/dashboard/interview/create-popup/questionCard";

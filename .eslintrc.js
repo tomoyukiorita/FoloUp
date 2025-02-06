@@ -1,11 +1,6 @@
 module.exports = {
   root: true,
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "next/core-web-vitals",
-    "prettier",
-  ],
+  extends: ["eslint:recommended", "next/core-web-vitals", "prettier"],
   rules: {
     curly: "error",
     "no-console": "error",

@@ -10,7 +10,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRouter } from "next/navigation";
 import { ResponseService } from "@/services/responses.service";
 import { ClientService } from "@/services/clients.service";
-import { Interview, Response } from "@/types/interface";
+import { Interview } from "@/types/interview";
+import { Response } from "@/types/response";
 import { formatTimestampToDateHHMM } from "@/lib/utils";
 import CallInfo from "@/components/call/callInfo";
 import SummaryInfo from "@/components/dashboard/interview/summaryInfo";
@@ -33,7 +34,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CandidateStatus } from "@/types/enum";
+import { CandidateStatus } from "@/lib/enum";
 import LoaderWithText from "@/components/loaders/loader-with-text/loaderWithText";
 
 interface Props {

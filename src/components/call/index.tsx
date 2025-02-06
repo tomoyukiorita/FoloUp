@@ -17,7 +17,8 @@ import MiniLoader from "../loaders/mini-loader/miniLoader";
 import { toast } from "sonner";
 import { testEmail } from "@/lib/utils";
 import { ResponseService } from "@/services/responses.service";
-import { Interview, FeedbackData } from "@/types/interface";
+import { Interview } from "@/types/interview";
+import { FeedbackData } from "@/types/response";
 import { FeedbackService } from "@/services/feedback.service";
 import { FeedbackForm } from "@/components/call/feedbackForm";
 import {

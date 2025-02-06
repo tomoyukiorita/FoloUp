@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useContext, ReactNode, useEffect } from "react";
-import { User } from "@/types/interface";
+import { User } from "@/types/user";
 import { useClerk, useOrganization } from "@clerk/nextjs";
 import { ClientService } from "@/services/clients.service";
 
