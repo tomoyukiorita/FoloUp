@@ -8,6 +8,23 @@ FoloUp is an open source platform for companies to conduct AI powered hiring int
 
 <img src="https://github.com/user-attachments/assets/fa92ade1-02ea-4332-b5ed-97056dea01c3" alt="FoloUp Logo" width="800">
 
+<div style="display: flex; flex-direction: row; gap: 20px; margin: 20px 0;">
+  <picture>
+    <img src="https://github.com/user-attachments/assets/91adf737-6f62-4f48-ae68-58855bc38ccf" alt="Description 1" width="400" style="max-width: 100%;">
+  </picture>
+  <picture>
+    <img src="https://github.com/user-attachments/assets/91bbe5d5-1eff-4158-80d9-d98c2a53f59b" alt="Description 2" width="400" style="max-width: 100%;">
+  </picture>
+</div>
+
+## Key Features
+
+- **🎯 Interview Creation:** Instantly generate tailored interview questions from any job description.
+- **🔗 One-Click Sharing:** Generate and share unique interview links with candidates in seconds.
+- **🎙️ AI Voice Interviews:** Let our AI conduct natural, conversational interviews that adapt to candidate responses.
+- **📊 Smart Analysis:** Get detailed insights and scores for each interview response, powered by advanced AI.
+- **📈 Comprehensive Dashboard:** Track all candidate performances, compare responses, and manage your hiring pipeline in one place.
+
 Here's a [loom](https://www.loom.com/share/762fd7d12001490bbfdcf3fac37ff173?sid=9a5b2a5a-64df-4c4c-a0e7-fc9765691f81) of me explaining the app.
 
 ## Initial Setup
