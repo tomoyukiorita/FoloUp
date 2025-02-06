@@ -11,7 +11,7 @@ type TooltipProps = React.ComponentPropsWithoutRef<
   typeof TooltipPrimitive.Root
 >;
 
-function Tooltip(props:   TooltipProps) {
+function Tooltip(props: TooltipProps) {
   return <TooltipPrimitive.Root delayDuration={300} {...props} />;
 }
 

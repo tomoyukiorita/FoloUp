@@ -29,7 +29,9 @@ function InterviewerDetailsModal({ interviewer }: Props) {
             <p className="text-sm leading-relaxed  mt-0 whitespace-normal w-[25rem] text-justify">
               {interviewer?.description}
             </p>
-            <ReactAudioPlayer src={`/audio/${interviewer?.audio}`} controls />
+            {interviewer?.audio && (
+              <ReactAudioPlayer src={`/audio/${interviewer.audio}`} controls />
+            )}
           </div>
         </div>
         <h3 className="text-mg m-0 p-0 mt-5 ml-0 font-medium">

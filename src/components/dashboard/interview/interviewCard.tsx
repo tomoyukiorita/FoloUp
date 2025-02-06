@@ -8,10 +8,11 @@ import { CopyCheck } from "lucide-react";
 import { ResponseService } from "@/services/responses.service";
 import axios from "axios";
 import MiniLoader from "@/components/loaders/mini-loader/miniLoader";
+import { InterviewerService } from "@/services/interviewers.service";
 
 interface Props {
   name: string | null;
-  img: string;
+  interviewerId: bigint;
   id: string;
   url: string;
   readableSlug: string;
@@ -19,10 +20,21 @@ interface Props {
 
 const base_url = process.env.NEXT_PUBLIC_LIVE_URL;
 
-function InterviewerCard({ name, img, id, url, readableSlug }: Props) {
+function InterviewCard({ name, interviewerId, id, url, readableSlug }: Props) {
   const [copied, setCopied] = useState(false);
   const [responseCount, setResponseCount] = useState<number | null>(null);
   const [isFetching, setIsFetching] = useState(false);
+  const [img, setImg] = useState("");
+
+  useEffect(() => {
+    const fetchInterviewer = async () => {
+      const interviewer =
+        await InterviewerService.getInterviewer(interviewerId);
+      setImg(interviewer.image);
+    };
+    fetchInterviewer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const fetchResponses = async () => {
@@ -124,15 +136,6 @@ function InterviewerCard({ name, img, id, url, readableSlug }: Props) {
             </div>
           </div>
           <div className="absolute top-2 right-2">
-            {/* <Button
-              className={`text-xs text-indigo-600 px-1 h-6 mr-2  ${
-                copied ? "bg-indigo-300 text-white" : ""
-              }`}
-              variant={"secondary"}
-              onClick={() => router.push(`/interviews/${id}/edit`)}
-            >
-              <EditIcon size={16} /> 
-            </Button> */}
             <Button
               className={`text-xs text-indigo-600 px-1 h-6  ${
                 copied ? "bg-indigo-300 text-white" : ""
@@ -153,4 +156,4 @@ function InterviewerCard({ name, img, id, url, readableSlug }: Props) {
   );
 }
 
-export default InterviewerCard;
+export default InterviewCard;

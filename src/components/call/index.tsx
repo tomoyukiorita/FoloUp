@@ -36,6 +36,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { InterviewerService } from "@/services/interviewers.service";
 
 const webClient = new RetellWebClient();
 
@@ -75,7 +76,7 @@ function Call({ interview }: InterviewProps) {
   const { tabSwitchCount } = useTabSwitchPrevention();
   const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
+  const [interviewerImg, setInterviewerImg] = useState("");
   const [interviewTimeDuration, setInterviewTimeDuration] =
     useState<string>("1");
   const [time, setTime] = useState(0);
@@ -257,6 +258,17 @@ function Call({ interview }: InterviewProps) {
   }, [interview]);
 
   useEffect(() => {
+    const fetchInterviewer = async () => {
+      const interviewer = await InterviewerService.getInterviewer(
+        interview.interviewer_id,
+      );
+      setInterviewerImg(interviewer.image);
+    };
+    fetchInterviewer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [interview.interviewer_id]);
+
+  useEffect(() => {
     if (isEnded) {
       const updateInterview = async () => {
         await ResponseService.saveResponse(
@@ -417,13 +429,7 @@ function Call({ interview }: InterviewProps) {
                     </div>
                     <div className="flex flex-col mx-auto justify-center items-center align-middle">
                       <Image
-                        src={`${
-                          interview?.interviewer_id == BigInt(1)
-                            ? "/interviewers/Bob.png"
-                            : interview?.interviewer_id == BigInt(2)
-                              ? "/interviewers/Lisa.png"
-                              : "/interviewers/Adam.png"
-                        }`}
+                        src={interviewerImg}
                         alt="Image of the interviewer"
                         width={120}
                         height={120}

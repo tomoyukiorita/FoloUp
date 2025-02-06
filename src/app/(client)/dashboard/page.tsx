@@ -184,15 +184,9 @@ function Interviews() {
               {interviews.map((item) => (
                 <InterviewCard
                   id={item.id}
+                  interviewerId={item.interviewer_id}
                   key={item.id}
                   name={item.name}
-                  img={`${
-                    item.interviewer_id == BigInt(1)
-                      ? "/interviewers/Bob.png"
-                      : item.interviewer_id == BigInt(2)
-                        ? "/interviewers/Lisa.png"
-                        : "/interviewers/Adam.png"
-                  }`}
                   url={item.url ?? ""}
                   readableSlug={item.readable_slug}
                 />

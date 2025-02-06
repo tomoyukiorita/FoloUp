@@ -279,7 +279,9 @@ function CallInfo({
                 <div className="flex flex-col mt-3">
                   <p className="font-semibold">Interview Recording</p>
                   <div className="flex flex-row gap-3 mt-2">
-                    <ReactAudioPlayer src={call?.recording_url} controls />
+                    {call?.recording_url && (
+                      <ReactAudioPlayer src={call?.recording_url} controls />
+                    )}
                     <a
                       className="my-auto"
                       href={call?.recording_url}

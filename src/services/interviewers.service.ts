@@ -59,7 +59,7 @@ const createInterviewer = async (payload: any) => {
   return data;
 };
 
-const getInterviewer = async (interviewerId: string) => {
+const getInterviewer = async (interviewerId: bigint) => {
   const { data: interviewerData, error: interviewerError } = await supabase
     .from("interviewer")
     .select("*")
