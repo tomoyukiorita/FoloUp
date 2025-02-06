@@ -170,7 +170,6 @@ function InterviewHome({ params, searchParams }: Props) {
       const updatedIsActive = !isActive;
       setIsActive(updatedIsActive);
 
-      // Call the service to update the is_active status in the database
       await InterviewService.updateInterview(
         { is_active: updatedIsActive },
         params.interviewId,
@@ -194,7 +193,6 @@ function InterviewHome({ params, searchParams }: Props) {
 
   const handleThemeColorChange = async (newColor: string) => {
     try {
-      // Call the service to update the themeColor status in the database
       await InterviewService.updateInterview(
         { theme_color: newColor },
         params.interviewId,
