@@ -1,4 +1,3 @@
-[![GitHub stars](https://img.shields.io/github/stars/foloup/foloup?style=social)](https://github.com/foloup/foloup/stargazers)
 ![License](https://img.shields.io/github/license/foloup/foloup)
 [![Twitter Follow](https://img.shields.io/twitter/follow/SuveenE?style=social)](https://x.com/SuveenE)
 
@@ -23,7 +22,7 @@ FoloUp is an open source platform for companies to conduct AI powered hiring int
 - **🔗 One-Click Sharing:** Generate and share unique interview links with candidates in seconds.
 - **🎙️ AI Voice Interviews:** Let our AI conduct natural, conversational interviews that adapt to candidate responses.
 - **📊 Smart Analysis:** Get detailed insights and scores for each interview response, powered by advanced AI.
-- **📈 Comprehensive Dashboard:** Track all candidate performances, compare responses, and manage your hiring pipeline in one place.
+- **📈 Comprehensive Dashboard:** Track all candidate performances and overall stats.
 
 Here's a [loom](https://www.loom.com/share/762fd7d12001490bbfdcf3fac37ff173?sid=9a5b2a5a-64df-4c4c-a0e7-fc9765691f81) of me explaining the app.
 
