@@ -111,6 +111,10 @@ For a detailed guide on contributing, read the [CONTRIBUTING.md](CONTRIBUTING.md
 
 If you find FoloUp helpful, please consider giving us a star on GitHub! It helps us reach more developers and continue improving the project.
 
+## Contact
+
+If you have any questions or feedback, please feel free to reach out to us at [founders@folo-up.com](mailto:founders@folo-up.co).
+
 ## License
 
 The software code is licensed under the MIT License.
