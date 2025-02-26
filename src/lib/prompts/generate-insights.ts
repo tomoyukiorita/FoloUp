@@ -1,5 +1,5 @@
 export const SYSTEM_PROMPT =
-  "You are an expert in uncovering deeper insights from interview question and answer sets.";
+  "あなたは、インタビューの質問と回答のセットから深い洞察を引き出す専門家です。";
 
 export const createUserPrompt = (
   callSummaries: string,
@@ -7,19 +7,18 @@ export const createUserPrompt = (
   interviewObjective: string,
   interviewDescription: string,
 ) => {
-  return `Imagine you are an interviewer who is an expert in uncovering deeper insights from call summaries.
-    Use the list of call summaries and the interview details below to generate insights.
-    
-    ###
-    Call Summaries: ${callSummaries}
+  return `あなたは、通話の要約から深い洞察を引き出すことに長けたインタビュアーです。
+以下の通話要約とインタビュー情報を基に、ユーザーのフィードバックを示す洞察を生成してください。
 
-    ###
-    Interview Title: ${interviewName}
-    Interview Objective: ${interviewObjective}
-    Interview Description: ${interviewDescription}
+通話要約:${callSummaries}
 
-    Give 3 insights from the call summaries that highlights user feedback. Only output the insights. Do not include user names in the insights.
-    Make sure each insight is 25 words or less.
-    
-    Output the answer in JSON format with the key "insights" with an array on 3 insights as the value.`;
+インタビュー情報:
+インタビュータイトル: ${interviewName}
+インタビューの目的: ${interviewObjective}
+インタビューの説明: ${interviewDescription}
+出力要件:
+通話要約からユーザーのフィードバックを示す洞察を3つ抽出する。
+各洞察は25語以内で簡潔にまとめる。
+ユーザー名は含めないこと。
+出力は以下のJSONフォーマットで厳密に行う。`;
 };

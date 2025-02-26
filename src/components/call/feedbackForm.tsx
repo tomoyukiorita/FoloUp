@@ -31,33 +31,32 @@ export function FeedbackForm({ onSubmit, email }: FeedbackFormProps) {
   };
 
   return (
-    <div className="p-4">
-      <h3 className="text-lg font-semibold mb-4">
-        Are you satisfied with the platform?
-      </h3>
-      <div className="flex justify-center space-x-4 mb-4">
-        {Object.values(SatisfactionLevel).map((emoji) => (
-          <button
-            key={emoji}
-            className={`text-3xl ${satisfaction === emoji ? "border-2 border-indigo-600" : ""}`}
+    <div className="flex flex-col gap-4">
+      <h2 className="text-xl font-semibold">プラットフォームに満足しましたか？</h2>
+      <div className="flex justify-center gap-4">
+        {Object.values(SatisfactionLevel).map((emoji, index) => (
+          <div
+            key={index}
+            className={`cursor-pointer p-2 ${
+              satisfaction === emoji ? "border-2 border-indigo-600 rounded-lg" : ""
+            }`}
             onClick={() => setSatisfaction(emoji)}
           >
             {emoji}
-          </button>
+          </div>
         ))}
       </div>
-      <Textarea
+      <textarea
         value={feedback}
-        placeholder="Add your feedback here"
-        className="mb-4"
         onChange={(e) => setFeedback(e.target.value)}
+        placeholder="フィードバックを入力してください"
+        className="w-full h-32 p-2 border rounded-md"
       />
       <Button
-        disabled={satisfaction === null && feedback.trim() === ""}
-        className="w-full bg-indigo-600 text-white"
+        className="bg-indigo-600 hover:bg-indigo-800 text-white"
         onClick={handleSubmit}
       >
-        Submit Feedback
+        フィードバックを送信
       </Button>
     </div>
   );

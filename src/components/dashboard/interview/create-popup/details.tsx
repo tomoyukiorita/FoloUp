@@ -74,10 +74,10 @@ function DetailsPopup({
     setLoading(true);
 
     const data = {
-      name: name.trim(),
-      objective: objective.trim(),
+      name: name?.trim() || '',
+      objective: objective?.trim() || '',
       number: numQuestions,
-      context: uploadedDocumentContext,
+      context: uploadedDocumentContext?.trim() || '',
     };
 
     const generatedQuestions = (await axios.post(
@@ -143,20 +143,20 @@ function DetailsPopup({
   return (
     <>
       <div className="text-center w-[38rem]">
-        <h1 className="text-xl font-semibold">Create an Interview</h1>
+        <h1 className="text-xl font-semibold">面接を作成</h1>
         <div className="flex flex-col justify-center items-start mt-4 ml-10 mr-8">
           <div className="flex flex-row justify-center items-center">
-            <h3 className="text-sm font-medium">Interview Name:</h3>
+            <h3 className="text-sm font-medium">面接名：</h3>
             <input
               type="text"
               className="border-b-2 focus:outline-none border-gray-500 px-2 w-96 py-0.5 ml-3"
-              placeholder="e.g. Name of the Interview"
+              placeholder="例：面接の名前"
               value={name}
               onChange={(e) => setName(e.target.value)}
               onBlur={(e) => setName(e.target.value.trim())}
             />
           </div>
-          <h3 className="text-sm mt-3 font-medium">Select an Interviewer:</h3>
+          <h3 className="text-sm mt-3 font-medium">面接官を選択：</h3>
           <div className="relative flex items-center mt-1">
             <div
               id="slider-3"
@@ -186,8 +186,8 @@ function DetailsPopup({
                     onClick={() => setSelectedInterviewer(item.id)}
                   >
                     <Image
-                      src={item.image}
-                      alt="Picture of the interviewer"
+                      src={item.image || '/default-interviewer.png'}
+                      alt={`${item.name}の画像`}
                       width={70}
                       height={70}
                       className="w-full h-full object-cover"
@@ -216,16 +216,16 @@ function DetailsPopup({
               <></>
             )}
           </div>
-          <h3 className="text-sm font-medium">Objective:</h3>
+          <h3 className="text-sm font-medium">目的：</h3>
           <Textarea
             value={objective}
             className="h-24 mt-2 border-2 border-gray-500 w-[33.2rem]"
-            placeholder="e.g. Find best candidates based on their technical skills and previous projects."
+            placeholder="例：技術力と過去のプロジェクト経験に基づいて最適な候補者を見つける"
             onChange={(e) => setObjective(e.target.value)}
             onBlur={(e) => setObjective(e.target.value.trim())}
           />
           <h3 className="text-sm font-medium mt-2">
-            Upload any documents related to the interview.
+            面接に関連する資料をアップロード
           </h3>
           <FileUpload
             isUploaded={isUploaded}
@@ -237,7 +237,7 @@ function DetailsPopup({
           <label className="flex-col mt-7 w-full">
             <div className="flex items-center cursor-pointer">
               <span className="text-sm font-medium">
-                Do you prefer the interviewees&apos; responses to be anonymous?
+                回答を匿名にしますか？
               </span>
               <Switch
                 checked={isAnonymous}
@@ -251,13 +251,12 @@ function DetailsPopup({
               style={{ fontSize: "0.7rem", lineHeight: "0.66rem" }}
               className="font-light text-xs italic w-full text-left block"
             >
-              Note: If not anonymous, the interviewee&apos;s email and name will
-              be collected.
+              注：匿名でない場合、応募者のメールアドレスと名前が収集されます。
             </span>
           </label>
           <div className="flex flex-row gap-3 justify-between w-full mt-3">
             <div className="flex flex-row justify-center items-center ">
-              <h3 className="text-sm font-medium ">Number of Questions:</h3>
+              <h3 className="text-sm font-medium ">質問数：</h3>
               <input
                 type="number"
                 step="1"
@@ -280,7 +279,7 @@ function DetailsPopup({
               />
             </div>
             <div className="flex flex-row justify-center items-center">
-              <h3 className="text-sm font-medium ">Duration (mins):</h3>
+              <h3 className="text-sm font-medium ">面接時間（分）：</h3>
               <input
                 type="number"
                 step="1"
@@ -320,7 +319,7 @@ function DetailsPopup({
                 onGenrateQuestions();
               }}
             >
-              Generate Questions
+              質問を自動生成
             </Button>
             <Button
               disabled={
@@ -338,7 +337,7 @@ function DetailsPopup({
                 onManual();
               }}
             >
-              I&apos;ll do it myself
+              手動で作成
             </Button>
           </div>
         </div>

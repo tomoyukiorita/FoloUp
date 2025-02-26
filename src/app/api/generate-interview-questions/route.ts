@@ -19,6 +19,7 @@ export async function POST(req: Request, res: Response) {
   });
 
   try {
+    logger.info("Generating questions with prompt:", generateQuestionsPrompt(body));
     const baseCompletion = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
@@ -36,6 +37,8 @@ export async function POST(req: Request, res: Response) {
 
     const basePromptOutput = baseCompletion.choices[0] || {};
     const content = basePromptOutput.message?.content;
+    
+    logger.info("Generated content:", content || "No content generated");
 
     logger.info("Interview questions generated successfully");
 
@@ -45,11 +48,12 @@ export async function POST(req: Request, res: Response) {
       },
       { status: 200 },
     );
-  } catch (error) {
-    logger.error("Error generating interview questions");
+  } catch (error: any) {
+    logger.error("Error generating interview questions:", error);
+    console.error("Error details:", error);
 
     return NextResponse.json(
-      { error: "internal server error" },
+      { error: "internal server error", details: error.message },
       { status: 500 },
     );
   }

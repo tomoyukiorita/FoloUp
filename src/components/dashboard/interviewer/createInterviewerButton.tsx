@@ -1,20 +1,34 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { InterviewerService } from "@/services/interviewers.service";
+import { useInterviewers } from "@/contexts/interviewers.context";
 import axios from "axios";
 import { Plus, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 function CreateInterviewerButton() {
   const [isLoading, setIsLoading] = useState(false);
+  const { fetchInterviewers } = useInterviewers();
 
   const createInterviewers = async () => {
-    setIsLoading(true);
-    const response = await axios.get("/api/create-interviewer", {});
-    console.log(response);
-    setIsLoading(false);
-    InterviewerService.getAllInterviewers();
+    try {
+      setIsLoading(true);
+      const response = await axios.get("/api/create-interviewer");
+      await fetchInterviewers();
+      toast.success("面接官を作成しました", {
+        position: "bottom-right",
+        duration: 3000,
+      });
+    } catch (error) {
+      console.error("Error creating interviewers:", error);
+      toast.error("面接官の作成に失敗しました", {
+        position: "bottom-right",
+        duration: 3000,
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -34,7 +48,7 @@ function CreateInterviewerButton() {
             </div>
           )}
           <p className="my-3 mx-auto text-xs text-wrap w-fit text-center">
-            Create two Default Interviewers
+            デフォルトの面接官を作成
           </p>
         </CardContent>
       </Card>

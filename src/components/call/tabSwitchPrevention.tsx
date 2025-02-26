@@ -42,10 +42,10 @@ function TabSwitchWarning() {
     <AlertDialog open={isDialogOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Warning: Tab Switching</AlertDialogTitle>
+          <AlertDialogTitle>警告：タブの切り替え</AlertDialogTitle>
           <AlertDialogDescription>
-            Switching tabs may degrade your interview performance. Tab switching
-            is tracked.
+            タブの切り替えは面接のパフォーマンスに影響を与える可能性があります。
+            タブの切り替えは記録されます。
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -53,7 +53,7 @@ function TabSwitchWarning() {
             className="bg-indigo-400 hover:bg-indigo-600 text-white"
             onClick={handleUnderstand}
           >
-            I understand
+            理解しました
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

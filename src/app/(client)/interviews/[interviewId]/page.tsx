@@ -175,17 +175,17 @@ function InterviewHome({ params, searchParams }: Props) {
         params.interviewId,
       );
 
-      toast.success("Interview status updated", {
-        description: `The interview is now ${
-          updatedIsActive ? "active" : "inactive"
-        }.`,
+      toast.success("面接のステータスを更新しました", {
+        description: `面接は現在${
+          updatedIsActive ? "有効" : "無効"
+        }です。`,
         position: "bottom-right",
         duration: 3000,
       });
     } catch (error) {
       console.error(error);
-      toast.error("Error", {
-        description: "Failed to update the interview status.",
+      toast.error("エラー", {
+        description: "面接のステータス更新に失敗しました。",
         duration: 3000,
       });
     }
@@ -198,14 +198,14 @@ function InterviewHome({ params, searchParams }: Props) {
         params.interviewId,
       );
 
-      toast.success("Theme color updated", {
+      toast.success("テーマカラーを更新しました", {
         position: "bottom-right",
         duration: 3000,
       });
     } catch (error) {
       console.error(error);
-      toast.error("Error", {
-        description: "Failed to update the theme color.",
+      toast.error("エラー", {
+        description: "テーマカラーの更新に失敗しました。",
         duration: 3000,
       });
     }
@@ -296,7 +296,7 @@ function InterviewHome({ params, searchParams }: Props) {
                   side="bottom"
                   sideOffset={4}
                 >
-                  <span className="text-black flex flex-row gap-4">Share</span>
+                  <span className="text-black flex flex-row gap-4">共有</span>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -319,7 +319,7 @@ function InterviewHome({ params, searchParams }: Props) {
                   sideOffset={4}
                 >
                   <span className="text-black flex flex-row gap-4">
-                    Preview
+                    プレビュー
                   </span>
                 </TooltipContent>
               </Tooltip>
@@ -343,7 +343,7 @@ function InterviewHome({ params, searchParams }: Props) {
                   sideOffset={4}
                 >
                   <span className="text-black flex flex-row gap-4">
-                    Theme Color
+                    テーマカラー
                   </span>
                 </TooltipContent>
               </Tooltip>
@@ -367,7 +367,7 @@ function InterviewHome({ params, searchParams }: Props) {
                   side="bottom"
                   sideOffset={4}
                 >
-                  <span className="text-black flex flex-row gap-4">Edit</span>
+                  <span className="text-black flex flex-row gap-4">編集</span>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -375,7 +375,7 @@ function InterviewHome({ params, searchParams }: Props) {
             <label className="inline-flex cursor-pointer">
               {currentPlan == "free_trial_over" ? (
                 <>
-                  <span className="ms-3 my-auto text-sm">Inactive</span>
+                  <span className="ms-3 my-auto text-sm">無効</span>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipContent
@@ -383,14 +383,14 @@ function InterviewHome({ params, searchParams }: Props) {
                         side="bottom"
                         sideOffset={4}
                       >
-                        Upgrade your plan to reactivate
+                        プランをアップグレードして再有効化する
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </>
               ) : (
                 <>
-                  <span className="ms-3 my-auto text-sm">Active</span>
+                  <span className="ms-3 my-auto text-sm">有効</span>
                   <Switch
                     checked={isActive}
                     className={`ms-3 my-auto ${
@@ -412,37 +412,37 @@ function InterviewHome({ params, searchParams }: Props) {
                 >
                   <SelectTrigger className="w-[95%] bg-slate-100 rounded-lg">
                     <Filter size={18} className=" text-slate-400" />
-                    <SelectValue placeholder="Filter By" />
+                    <SelectValue placeholder="フィルター" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value={CandidateStatus.NO_STATUS}>
                       <div className="flex items-center">
                         <div className="w-3 h-3 bg-gray-400 rounded-full mr-2" />
-                        No Status
+                        ステータスなし
                       </div>
                     </SelectItem>
                     <SelectItem value={CandidateStatus.NOT_SELECTED}>
                       <div className="flex items-center">
                         <div className="w-3 h-3 bg-red-500 rounded-full mr-2" />
-                        Not Selected
+                        不採用
                       </div>
                     </SelectItem>
                     <SelectItem value={CandidateStatus.POTENTIAL}>
                       <div className="flex items-center">
                         <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2" />
-                        Potential
+                        検討中
                       </div>
                     </SelectItem>
                     <SelectItem value={CandidateStatus.SELECTED}>
                       <div className="flex items-center">
                         <div className="w-3 h-3 bg-green-500 rounded-full mr-2" />
-                        Selected
+                        採用
                       </div>
                     </SelectItem>
                     <SelectItem value="ALL">
                       <div className="flex items-center">
                         <div className="w-3 h-3 border-2 border-gray-300 rounded-full mr-2" />
-                        All
+                        すべて
                       </div>
                     </SelectItem>
                   </SelectContent>
@@ -480,8 +480,8 @@ function InterviewHome({ params, searchParams }: Props) {
                           <div className="flex flex-col my-auto">
                             <p className="font-medium mb-[2px]">
                               {response?.name
-                                ? `${response?.name}'s Response`
-                                : "Anonymous"}
+                                ? `${response?.name}の回答`
+                                : "匿名"}
                             </p>
                             <p className="">
                               {formatTimestampToDateHHMM(
@@ -520,7 +520,7 @@ function InterviewHome({ params, searchParams }: Props) {
                                         sideOffset={4}
                                       >
                                         <span className="text-white font-normal flex flex-row gap-4">
-                                          Overall Score
+                                          総合スコア
                                         </span>
                                       </TooltipContent>
                                     </Tooltip>
@@ -534,7 +534,7 @@ function InterviewHome({ params, searchParams }: Props) {
                   ))
                 ) : (
                   <p className="text-center text-gray-500">
-                    No responses to display
+                    表示する回答がありません
                   </p>
                 )}
               </ScrollArea>
@@ -564,7 +564,7 @@ function InterviewHome({ params, searchParams }: Props) {
       >
         <div className="w-[250px] p-3">
           <h3 className="text-lg font-semibold mb-4 text-center">
-            Choose a Theme Color
+            テーマカラーを選択
           </h3>
           <ChromePicker
             disableAlpha={true}

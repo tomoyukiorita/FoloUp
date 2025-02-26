@@ -1,82 +1,66 @@
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from '@supabase/supabase-js';
+import { Interviewer } from "@/types/interviewer";
 
-const supabase = createClientComponentClient();
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-const getAllInterviewers = async (clientId: string = "") => {
-  try {
-    const { data: clientData, error: clientError } = await supabase
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Supabaseの環境変数が設定されていません。');
+}
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export class InterviewerService {
+  static async getInterviewers(): Promise<Interviewer[]> {
+    const { data, error } = await supabase
       .from("interviewer")
-      .select(`*`);
+      .select("*")
+      .order("id");
 
-    if (clientError) {
-      console.error(
-        `Error fetching interviewers for clientId ${clientId}:`,
-        clientError,
-      );
-
-      return [];
+    if (error) {
+      throw error;
     }
 
-    return clientData || [];
-  } catch (error) {
-    console.log(error);
-
-    return [];
-  }
-};
-
-const createInterviewer = async (payload: any) => {
-  // Check for existing interviewer with the same name
-  const { data: existingInterviewer, error: checkError } = await supabase
-    .from("interviewer")
-    .select("*")
-    .eq("name", payload.name)
-    .filter("agent_id", "eq", payload.agent_id)
-    .single();
-
-  if (checkError && checkError.code !== "PGRST116") {
-    console.error("Error checking existing interviewer:", checkError);
-
-    return null;
+    return data as Interviewer[];
   }
 
-  if (existingInterviewer) {
-    console.error("An interviewer with this name already exists");
+  static async getInterviewer(id: bigint): Promise<Interviewer | null> {
+    const { data, error } = await supabase
+      .from("interviewer")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-    return null;
+    if (error) {
+      throw error;
+    }
+
+    return data as Interviewer;
   }
 
-  const { error, data } = await supabase
-    .from("interviewer")
-    .insert({ ...payload });
+  static async createInterviewer(interviewer: Partial<Interviewer>): Promise<Interviewer> {
+    const { data, error } = await supabase
+      .from("interviewer")
+      .insert([interviewer])
+      .select()
+      .single();
 
-  if (error) {
-    console.error("Error creating interviewer:", error);
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
+    }
 
-    return null;
+    return data as Interviewer;
   }
 
-  return data;
-};
+  static async deleteInterviewer(id: bigint): Promise<void> {
+    const { error } = await supabase
+      .from("interviewer")
+      .delete()
+      .eq("id", id);
 
-const getInterviewer = async (interviewerId: bigint) => {
-  const { data: interviewerData, error: interviewerError } = await supabase
-    .from("interviewer")
-    .select("*")
-    .eq("id", interviewerId)
-    .single();
-
-  if (interviewerError) {
-    console.error("Error fetching interviewer:", interviewerError);
-
-    return null;
+    if (error) {
+      throw error;
+    }
   }
-
-  return interviewerData;
-};
-
-export const InterviewerService = {
-  getAllInterviewers,
-  createInterviewer,
-  getInterviewer,
-};
+}

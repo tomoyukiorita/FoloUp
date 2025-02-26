@@ -1,31 +1,27 @@
 "use client";
 
-import React, { useState, useContext, ReactNode, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Interviewer } from "@/types/interviewer";
 import { InterviewerService } from "@/services/interviewers.service";
 import { useClerk } from "@clerk/nextjs";
 
 interface InterviewerContextProps {
   interviewers: Interviewer[];
-  setInterviewers: React.Dispatch<React.SetStateAction<Interviewer[]>>;
-  createInterviewer: (payload: any) => void;
   interviewersLoading: boolean;
-  setInterviewersLoading: (interviewersLoading: boolean) => void;
+  fetchInterviewers: () => Promise<void>;
 }
 
-export const InterviewerContext = React.createContext<InterviewerContextProps>({
+const InterviewerContext = createContext<InterviewerContextProps>({
   interviewers: [],
-  setInterviewers: () => {},
-  createInterviewer: () => {},
-  interviewersLoading: false,
-  setInterviewersLoading: () => undefined,
+  interviewersLoading: true,
+  fetchInterviewers: async () => {},
 });
 
-interface InterviewerProviderProps {
-  children: ReactNode;
-}
-
-export function InterviewerProvider({ children }: InterviewerProviderProps) {
+export const InterviewerProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [interviewers, setInterviewers] = useState<Interviewer[]>([]);
   const { user } = useClerk();
   const [interviewersLoading, setInterviewersLoading] = useState(true);
@@ -33,19 +29,13 @@ export function InterviewerProvider({ children }: InterviewerProviderProps) {
   const fetchInterviewers = async () => {
     try {
       setInterviewersLoading(true);
-      const response = await InterviewerService.getAllInterviewers(
-        user?.id as string,
-      );
-      setInterviewers(response);
+      const data = await InterviewerService.getInterviewers();
+      setInterviewers(data);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching interviewers:", error);
+    } finally {
+      setInterviewersLoading(false);
     }
-    setInterviewersLoading(false);
-  };
-
-  const createInterviewer = async (payload: any) => {
-    await InterviewerService.createInterviewer({ ...payload });
-    fetchInterviewers();
   };
 
   useEffect(() => {
@@ -57,21 +47,11 @@ export function InterviewerProvider({ children }: InterviewerProviderProps) {
 
   return (
     <InterviewerContext.Provider
-      value={{
-        interviewers,
-        setInterviewers,
-        createInterviewer,
-        interviewersLoading,
-        setInterviewersLoading,
-      }}
+      value={{ interviewers, interviewersLoading, fetchInterviewers }}
     >
       {children}
     </InterviewerContext.Provider>
   );
-}
-
-export const useInterviewers = () => {
-  const value = useContext(InterviewerContext);
-
-  return value;
 };
+
+export const useInterviewers = () => useContext(InterviewerContext);

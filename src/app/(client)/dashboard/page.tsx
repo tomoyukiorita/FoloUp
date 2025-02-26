@@ -41,7 +41,7 @@ function Interviews() {
           const data = await ClientService.getOrganizationById(organization.id);
           if (data?.plan) {
             setCurrentPlan(data.plan);
-            if (data.plan === "free_trial_over") {
+            if (data.plan === "無料トライアル終了") {
               setIsModalOpen(true);
             }
           }
@@ -50,7 +50,7 @@ function Interviews() {
           }
         }
       } catch (error) {
-        console.error("Error fetching organization data:", error);
+        console.error("法人データ取得エラー:", error);
       }
     };
 
@@ -63,7 +63,7 @@ function Interviews() {
         setLoading(true);
         try {
           let totalResponses = 0;
-          if (currentPlan != "free_trial_over") {
+          if (currentPlan != "無料トライアル終了") {
             for (const interview of interviews) {
               const responses = await ResponseService.getAllResponses(
                 interview.id,
@@ -76,7 +76,7 @@ function Interviews() {
             totalResponses >= allowedResponsesCount &&
             currentPlan === "free"
           ) {
-            setCurrentPlan("free_trial_over");
+            setCurrentPlan("無料トライアル終了");
             try {
               for (const interview of interviews) {
                 await InterviewService.updateInterview(
@@ -85,7 +85,7 @@ function Interviews() {
                 );
               }
             } catch (error) {
-              console.error("Error disabling active interviews", error);
+              console.error("実施中の面接を無効にできませんでした", error);
             }
             await ClientService.updateOrganization(
               { plan: "free_trial_over" },
@@ -93,7 +93,7 @@ function Interviews() {
             );
           }
         } catch (error) {
-          console.error("Error fetching responses:", error);
+          console.error("回答の取得に失敗しました:", error);
         } finally {
           setLoading(false);
         }
@@ -107,10 +107,10 @@ function Interviews() {
     <main className="p-8 pt-0 ml-12 mr-auto rounded-md">
       <div className="flex flex-col items-left">
         <h2 className="mr-2 text-2xl font-semibold tracking-tight mt-8">
-          My Interviews
+          面接設定
         </h2>
         <h3 className=" text-sm tracking-tight text-gray-600 font-medium ">
-          Start getting responses now!
+          面接を開始しましょう！
         </h3>
         <div className="relative flex items-center mt-1 flex-wrap">
           {currentPlan == "free_trial_over" ? (
@@ -120,7 +120,7 @@ function Interviews() {
                   <Plus size={90} strokeWidth={0.5} className="text-gray-700" />
                 </div>
                 <CardTitle className="p-0 text-md text-center">
-                  You cannot create any more interviews unless you upgrade
+                  これ以上面接を作成することはできません。アップグレードが必要です。
                 </CardTitle>
               </CardContent>
             </Card>
@@ -138,11 +138,10 @@ function Interviews() {
                       <Gem />
                     </div>
                     <h3 className="text-xl font-semibold text-center">
-                      Upgrade to Pro
+                      Proプランにアップグレード
                     </h3>
                     <p className="text-l text-center">
-                      You have reached your limit for the free trial. Please
-                      upgrade to pro to continue using our features.
+                      無料トライアルの上限に達しました。引き続き機能を利用するには、Proプランにアップグレードしてください。
                     </p>
                     <div className="grid grid-cols-2 gap-2">
                       <div className="flex justify-center items-center">

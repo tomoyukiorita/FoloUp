@@ -27,9 +27,9 @@ const questionCard = ({
       <Card className=" shadow-md mb-5 pb-3 ">
         <CardContent className="p-2 mx-5">
           <div className="flex flex-row justify-between mt-3 items-baseline ">
-            <CardTitle className="text-lg">Question {questionNumber}</CardTitle>
+            <CardTitle className="text-lg">質問 {questionNumber}</CardTitle>
             <div className="flex flex-row items-start space-x-1">
-              <h3 className="text-base font-semibold mr-2">Depth Level: </h3>
+              <h3 className="text-base font-semibold mr-2">掘り下げレベル: </h3>
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -110,7 +110,7 @@ const questionCard = ({
             <textarea
               value={questionData?.question}
               className="h-fit mt-3 pt-1 border-2 rounded-md w-full px-2 border-gray-400"
-              placeholder="e.g. Can you tell me about a challenging project you’ve worked on?"
+              placeholder="例：これまでに取り組んだ中で最も困難なプロジェクトについて教えてください。"
               rows={3}
               onChange={(e) =>
                 onQuestionChange(questionData.id, {

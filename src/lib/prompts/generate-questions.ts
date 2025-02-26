@@ -1,32 +1,38 @@
 export const SYSTEM_PROMPT =
-  "You are an expert in coming up with follow up questions to uncover deeper insights.";
+  "あなたは、深い洞察を引き出すフォローアップ質問の専門家です";
 
 export const generateQuestionsPrompt = (body: {
   name: string;
   objective: string;
   number: number;
   context: string;
-}) => `Imagine you are an interviewer specialized in designing interview questions to help hiring managers find candidates with strong technical expertise and project experience, making it easier to identify the ideal fit for the role.
-              
-Interview Title: ${body.name}
-Interview Objective: ${body.objective}
+}) => `あなたは、採用担当者が技術的な専門知識とプロジェクト経験を持つ候補者を見つけやすくするためのインタビュー質問を設計する専門家です。
 
-Number of questions to be generated: ${body.number}
+インタビュー情報
+インタビュータイトル: ${body.name}
+インタビューの目的: ${body.objective}
+生成する質問数: ${body.number}
 
-Follow these detailed guidelines when crafting the questions:
-- Focus on evaluating the candidate's technical knowledge and their experience working on relevant projects. Questions should aim to gauge depth of expertise, problem-solving ability, and hands-on project experience. These aspects carry the most weight.
-- Include questions designed to assess problem-solving skills through practical examples. For instance, how the candidate has tackled challenges in previous projects, and their approach to complex technical issues.
-- Soft skills such as communication, teamwork, and adaptability should be addressed, but given less emphasis compared to technical and problem-solving abilities.
-- Maintain a professional yet approachable tone, ensuring candidates feel comfortable while demonstrating their knowledge.
-- Ask concise and precise open-ended questions that encourage detailed responses. Each question should be 30 words or less for clarity.
+質問作成の詳細なガイドライン
+・技術的な知識と関連プロジェクトでの経験を評価することに重点を置く。
+・候補者の専門性、問題解決能力、実践的なプロジェクト経験を測る質問を設計する。
+これらの要素が最も重要であり、選考の鍵となる。
+・実際のプロジェクト経験をもとに問題解決スキルを評価する質問を含める。
+・過去のプロジェクトで直面した課題や、複雑な技術的問題へのアプローチを具体的に聞く。
+・ソフトスキル（コミュニケーション、チームワーク、適応力）にも触れるが、技術力や問題解決能力ほど重視しない。
+・プロフェッショナルかつ親しみやすいトーンを維持し、候補者がリラックスしながら知識を十分に発揮できるようにする。
+・簡潔で明確なオープンエンドの質問を作成し、候補者が詳細に回答できるようにする。
+・各質問は30語以内 にまとめ、わかりやすくする。
 
-Use the following context to generate the questions:
+質問作成のコンテキスト
 ${body.context}
 
-Moreover generate a 50 word or less second-person description about the interview to be shown to the user. It should be in the field 'description'.
-Do not use the exact objective in the description. Remember that some details are not be shown to the user. It should be a small description for the
-user to understand what the content of the interview would be. Make sure it is clear to the respondent who's taking the interview.
+さらに、50語以内 でインタビューの概要を記述し、'description' フィールドに格納してください。
 
-The field 'questions' should take the format of an array of objects with the following key: question. 
+インタビューの目的をそのまま使わず、応募者にとって分かりやすい説明にすること。
+ユーザー（インタビュアー）には一部の詳細が非表示になることを考慮する。
+インタビューを受ける候補者にとって内容が明確になるように記述する。
 
-Strictly output only a JSON object with the keys 'questions' and 'description'.`;
+'questions'フィールドは、'question'キーを持つオブジェクトの配列として出力してください。
+
+厳密に'questions'と'description'キーのみを持つJSONオブジェクトとして出力してください。`;
