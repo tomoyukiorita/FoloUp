@@ -47,10 +47,10 @@ export function FeedbackForm({ onSubmit, email }: FeedbackFormProps) {
         ))}
       </div>
       <textarea
-        value={feedback}
-        onChange={(e) => setFeedback(e.target.value)}
-        placeholder="フィードバックを入力してください"
-        className="w-full h-32 p-2 border rounded-md"
+          value={feedback}
+          placeholder="フィードバックを入力してください"
+          className="w-full h-32 p-2 border rounded-md"
+          onChange={(e) => setFeedback(e.target.value)}
       />
       <Button
         className="bg-indigo-600 hover:bg-indigo-800 text-white"

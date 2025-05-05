@@ -24,7 +24,7 @@ interface Props {
   interviewer: Interviewer;
 }
 
-const InterviewerCard = ({ interviewer }: Props) => {
+function InterviewerCard({ interviewer }: Props) {
   const [open, setOpen] = useState(false);
   const { fetchInterviewers } = useInterviewers();
 
@@ -111,6 +111,6 @@ const InterviewerCard = ({ interviewer }: Props) => {
       </Modal>
     </>
   );
-};
+}
 
 export default InterviewerCard;
