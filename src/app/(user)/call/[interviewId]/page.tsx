@@ -30,14 +30,14 @@ function PopupLoader() {
       </div>
       <a
         className="flex flex-row justify-center align-middle mt-3"
-        href="https://folo-up.co/"
+        href=""
         target="_blank"
         rel="noopener noreferrer"
       >
         <div className="text-center text-md font-semibold mr-2">
           Powered by{" "}
           <span className="font-bold">
-            Folo<span className="text-indigo-600">Up</span>
+            Mis<span className="text-indigo-600">Eco</span>
           </span>
         </div>
         <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500" />
@@ -64,14 +64,14 @@ function PopUpMessage({ title, description, image }: PopupProps) {
       </div>
       <a
         className="flex flex-row justify-center align-middle mt-3"
-        href="https://folo-up.co/"
+        href=""
         target="_blank"
         rel="noopener noreferrer"
       >
         <div className="text-center text-md font-semibold mr-2">
           Powered by{" "}
           <span className="font-bold">
-            Folo<span className="text-indigo-600">Up</span>
+            Mis<span className="text-indigo-600">Eco</span>
           </span>
         </div>
         <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500" />
@@ -117,8 +117,8 @@ function InterviewInterface({ params }: Props) {
         {!interview ? (
           interviewNotFound ? (
             <PopUpMessage
-              title="Invalid URL"
-              description="The interview link you're trying to access is invalid. Please check the URL and try again."
+              title="無効なURL"
+              description="アクセスしようとしている面接リンクは無効です。URLを確認して再度お試しください。"
               image="/invalid-url.png"
             />
           ) : (
@@ -126,8 +126,8 @@ function InterviewInterface({ params }: Props) {
           )
         ) : !isActive ? (
           <PopUpMessage
-            title="Interview Is Unavailable"
-            description="We are not currently accepting responses. Please contact the sender for more information."
+            title="面接は現在利用できません"
+            description="現在、応募を受け付けておりません。詳細は応募企業にお問い合わせください。"
             image="/closed.png"
           />
         ) : (
@@ -140,18 +140,17 @@ function InterviewInterface({ params }: Props) {
             {interview?.name}
           </p>
           <p className="text-center text-gray-600 my-5">
-            Please use a PC to respond to the interview. Apologies for any
-            inconvenience caused.{" "}
+            面接に回答するにはPCをご使用ください。ご不便をおかけして申し訳ございません。{" "}
           </p>
         </div>
         <div className="text-center text-md font-semibold mr-2 my-5">
           Powered by{" "}
           <a
             className="font-bold underline"
-            href="www.folo-up.co"
+            href=""
             target="_blank"
           >
-            Folo<span className="text-indigo-600">Up</span>
+            Mis<span className="text-indigo-600">Eco</span>
           </a>
         </div>
       </div>

@@ -374,20 +374,20 @@ function CallInfo({
                     {call?.call_analysis?.user_sentiment === undefined ? (
                       <Skeleton className="w-[200px] h-[20px]" />
                     ) : (
-                      call?.call_analysis?.user_sentiment === "Neutral" ? "中立的" :
-                      call?.call_analysis?.user_sentiment === "Negative" ? "ネガティブ" :
-                      call?.call_analysis?.user_sentiment === "Positive" ? "ポジティブ" :
+                      call?.call_analysis?.user_sentiment === "Neutral" || call?.call_analysis?.user_sentiment === "中立" ? "中立的" :
+                      call?.call_analysis?.user_sentiment === "Negative" || call?.call_analysis?.user_sentiment === "ネガティブ" ? "ネガティブ" :
+                      call?.call_analysis?.user_sentiment === "Positive" || call?.call_analysis?.user_sentiment === "ポジティブ" ? "ポジティブ" :
                       call?.call_analysis?.user_sentiment
                     )}
                   </p>
 
                   <div
                     className={`${
-                      call?.call_analysis?.user_sentiment == "Neutral"
+                      call?.call_analysis?.user_sentiment === "Neutral" || call?.call_analysis?.user_sentiment === "中立"
                         ? "text-yellow-500"
-                        : call?.call_analysis?.user_sentiment == "Negative"
+                        : call?.call_analysis?.user_sentiment === "Negative" || call?.call_analysis?.user_sentiment === "ネガティブ"
                           ? "text-red-500"
-                          : call?.call_analysis?.user_sentiment == "Positive"
+                          : call?.call_analysis?.user_sentiment === "Positive" || call?.call_analysis?.user_sentiment === "ポジティブ"
                             ? "text-green-500"
                             : "text-transparent"
                     } text-xl`}

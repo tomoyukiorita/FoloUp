@@ -41,9 +41,10 @@ function Interviews() {
           const data = await ClientService.getOrganizationById(organization.id);
           if (data?.plan) {
             setCurrentPlan(data.plan);
-            if (data.plan === "無料トライアル終了") {
-              setIsModalOpen(true);
-            }
+            // モーダル表示を無効化
+            // if (data.plan === "無料トライアル終了") {
+            //   setIsModalOpen(true);
+            // }
           }
           if (data?.allowed_responses_count) {
             setAllowedResponsesCount(data.allowed_responses_count);
@@ -72,6 +73,8 @@ function Interviews() {
             }
           }
 
+          // 以下の制限チェックをコメントアウトして無効化
+          /*
           if (
             totalResponses >= allowedResponsesCount &&
             currentPlan === "free"
@@ -92,6 +95,7 @@ function Interviews() {
               organization.id,
             );
           }
+          */
         } catch (error) {
           console.error("回答の取得に失敗しました:", error);
         } finally {
@@ -113,7 +117,7 @@ function Interviews() {
           面接を開始しましょう！
         </h3>
         <div className="relative flex items-center mt-1 flex-wrap">
-          {currentPlan == "free_trial_over" ? (
+          {false && currentPlan == "free_trial_over" ? (
             <Card className=" flex bg-gray-200 items-center border-dashed border-gray-700 border-2 hover:scale-105 ease-in-out duration-300 h-60 w-56 ml-1 mr-3 mt-4 rounded-xl shrink-0 overflow-hidden shadow-md">
               <CardContent className="flex items-center flex-col mx-auto">
                 <div className="flex flex-col justify-center items-center w-full overflow-hidden">
@@ -131,7 +135,7 @@ function Interviews() {
             <InterviewsLoader />
           ) : (
             <>
-              {isModalOpen && (
+              {false && isModalOpen && (
                 <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
                   <div className="flex flex-col space-y-4">
                     <div className="flex justify-center text-indigo-600">

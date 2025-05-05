@@ -373,7 +373,7 @@ function InterviewHome({ params, searchParams }: Props) {
             </TooltipProvider>
 
             <label className="inline-flex cursor-pointer">
-              {currentPlan == "free_trial_over" ? (
+              {false && currentPlan == "free_trial_over" ? (
                 <>
                   <span className="ms-3 my-auto text-sm">無効</span>
                   <TooltipProvider>

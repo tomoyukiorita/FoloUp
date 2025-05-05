@@ -1,5 +1,5 @@
 export const SYSTEM_PROMPT =
-  "あなたは、インタビューの書き起こしを分析する専門家です。提供された主要な質問のみを使用し、追加の質問を生成したり推測したりしてはいけません。";
+  "あなたは、インタビューの書き起こしを分析する専門家です。提供された主要な質問のみを使用し、追加の質問を生成したり推測したりしてはいけません。すべての出力は必ず日本語で行ってください。英語での出力は一切行わないでください。";
 
 export const getInterviewAnalyticsPrompt = (
   interviewTranscript: string,
@@ -67,11 +67,15 @@ ${mainInterviewQuestions}
   "overallFeedback": string,
   "communication": { "score": number, "feedback": string },
   "questionSummaries": [{ "question": string, "summary": string }],
-  "softSkillSummary: string
+  "softSkillSummary": string
 }
 
 重要な注意点
 ✅ 提供された主要な質問のみを使用し、追加の質問や推測はしないこと。
 ✅ 厳密にJSONフォーマットで出力すること。
 ✅ 回答の要約は簡潔かつ明確にすること。
-✅ 適切なフィードバックと評価を行い、バランスの取れた分析を提供すること。`;
+✅ 適切なフィードバックと評価を行い、バランスの取れた分析を提供すること。
+✅ すべてのフィードバック、要約、説明は必ず日本語で出力すること。
+✅ 英語での出力は一切行わないこと。
+✅ call_analysisのcall_summaryフィールドも必ず日本語で出力すること。
+✅ user_sentimentやその他の分析結果も必ず日本語で出力すること（「Positive」ではなく「ポジティブ」、「Neutral」ではなく「中立」、「Negative」ではなく「ネガティブ」など）。`;

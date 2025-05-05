@@ -123,29 +123,31 @@ function SummaryInfo({ responses, interview }: SummaryProps) {
 
     responses.forEach((response) => {
       const sentiment = response.details?.call_analysis?.user_sentiment;
-      if (sentiment === "Positive") {
+      if (sentiment === "Positive" || sentiment === "ポジティブ") {
         sentimentCounter.positive += 1;
-      } else if (sentiment === "Negative") {
+      } else if (sentiment === "Negative" || sentiment === "ネガティブ") {
         sentimentCounter.negative += 1;
-      } else if (sentiment === "Neutral") {
+      } else if (sentiment === "Neutral" || sentiment === "中立") {
         sentimentCounter.neutral += 1;
       }
 
       const callCompletion =
         response.details?.call_analysis?.call_completion_rating;
-      if (callCompletion === "Complete") {
+      if (callCompletion === "Complete" || callCompletion === "完了") {
         callCompletionCounter.complete += 1;
-      } else if (callCompletion === "Incomplete") {
+      } else if (callCompletion === "Incomplete" || callCompletion === "未完了") {
         callCompletionCounter.incomplete += 1;
-      } else if (callCompletion === "Partial") {
+      } else if (callCompletion === "Partial" || callCompletion === "部分的") {
         callCompletionCounter.partial += 1;
       }
 
       const agentTaskCompletion =
         response.details?.call_analysis?.agent_task_completion_rating;
       if (
-        agentTaskCompletion === "Complete" ||
-        agentTaskCompletion === "Partial"
+        agentTaskCompletion === "Complete" || 
+        agentTaskCompletion === "完了" ||
+        agentTaskCompletion === "Partial" ||
+        agentTaskCompletion === "部分的"
       ) {
         completedCount += 1;
       }

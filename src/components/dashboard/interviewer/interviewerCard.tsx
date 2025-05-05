@@ -30,15 +30,23 @@ const interviewerCard = ({ interviewer }: Props) => {
 
   const handleDelete = async () => {
     try {
-      await InterviewerService.deleteInterviewer(interviewer.id);
-      await fetchInterviewers();
-      toast.success("面接官を削除しました", {
-        position: "bottom-right",
-        duration: 3000,
-      });
+      const result = await InterviewerService.deleteInterviewer(interviewer.id);
+      
+      if (result.success) {
+        await fetchInterviewers();
+        toast.success("面接官を削除しました", {
+          position: "bottom-right",
+          duration: 3000,
+        });
+      } else {
+        toast.error(result.error || "面接官の削除に失敗しました", {
+          position: "bottom-right",
+          duration: 5000,
+        });
+      }
     } catch (error) {
       console.error("Error deleting interviewer:", error);
-      toast.error("面接官の削除に失敗しました", {
+      toast.error("面接官の削除中にエラーが発生しました", {
         position: "bottom-right",
         duration: 3000,
       });

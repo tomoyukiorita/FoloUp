@@ -58,6 +58,10 @@ type transcriptType = {
   content: string;
 };
 
+// 時間管理の定数を追加
+const BUFFER_TIME_MINUTES = 1; // ハードタイムリミットまでのバッファー時間（分）
+const WARNING_TIME_SECONDS = 60; // 警告を表示する残り時間（秒）
+
 function Call({ interview }: InterviewProps) {
   const { createResponse } = useResponses();
   const [lastInterviewerResponse, setLastInterviewerResponse] =
@@ -81,6 +85,10 @@ function Call({ interview }: InterviewProps) {
     useState<string>("1");
   const [time, setTime] = useState(0);
   const [currentTimeDuration, setCurrentTimeDuration] = useState<string>("0");
+  const [showTimeWarning, setShowTimeWarning] = useState(false);
+  const [isNearingEnd, setIsNearingEnd] = useState(false);
+  const [timeExceeded, setTimeExceeded] = useState(false);
+  const [transcripts, setTranscripts] = useState<transcriptType[]>([]);
 
   const lastUserResponseRef = useRef<HTMLDivElement | null>(null);
 
@@ -274,6 +282,80 @@ function Call({ interview }: InterviewProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isEnded]);
 
+  // 時間管理のロジックを追加
+  useEffect(() => {
+    if (!isCalling || !interview.time_duration) return;
+
+    const softTimeLimit = parseInt(interview.time_duration) * 60; // 分を秒に変換
+    const hardTimeLimit = (parseInt(interview.time_duration) + BUFFER_TIME_MINUTES) * 60;
+    
+    // 警告時間のタイマー
+    const warningTimer = setTimeout(() => {
+      setShowTimeWarning(true);
+      // 面接官に残り時間を通知するプロンプトを送信
+      if (lastInterviewerResponse) {
+        webClient.on("update", (update) => {
+          if (update.transcript) {
+            setTranscripts((prev) => [
+              ...prev,
+              {
+                role: "system",
+                content: "残り1分となりました。自然な形で面接を終了に向けて進めてください。",
+              },
+            ]);
+          }
+        });
+      }
+    }, (softTimeLimit - WARNING_TIME_SECONDS) * 1000);
+
+    // ソフトタイムリミットのタイマー
+    const softLimitTimer = setTimeout(() => {
+      setIsNearingEnd(true);
+      if (lastInterviewerResponse) {
+        webClient.on("update", (update) => {
+          if (update.transcript) {
+            setTranscripts((prev) => [
+              ...prev,
+              {
+                role: "system",
+                content: "設定された面接時間に到達しました。最後の質問をまとめて終了に向かってください。",
+              },
+            ]);
+          }
+        });
+      }
+    }, softTimeLimit * 1000);
+
+    // ハードタイムリミットのタイマー
+    const hardLimitTimer = setTimeout(() => {
+      setTimeExceeded(true);
+      onEndCallClick();
+    }, hardTimeLimit * 1000);
+
+    return () => {
+      clearTimeout(warningTimer);
+      clearTimeout(softLimitTimer);
+      clearTimeout(hardLimitTimer);
+    };
+  }, [isCalling, interview.time_duration, lastInterviewerResponse, onEndCallClick]);
+
+  // プログレスバーの色を計算する関数を追加
+  const getProgressBarColor = () => {
+    if (timeExceeded) return "bg-red-500";
+    if (showTimeWarning) return "bg-yellow-500";
+    return "bg-indigo-500";
+  };
+
+  // 残り時間の警告メッセージを表示するコンポーネントを追加
+  const TimeWarning = () => {
+    if (!showTimeWarning) return null;
+    return (
+      <div className="fixed bottom-4 right-4 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <p>まもなく面接が終了します</p>
+      </div>
+    );
+  };
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       {isStarted && <TabSwitchWarning />}
@@ -282,7 +364,7 @@ function Call({ interview }: InterviewProps) {
           <div>
             <div className="m-4 h-[15px] rounded-lg border-[1px]  border-black">
               <div
-                className=" bg-indigo-600 h-[15px] rounded-lg"
+                className={`${getProgressBarColor()} h-[15px] rounded-lg`}
                 style={{
                   width: isEnded
                     ? "100%"
@@ -554,18 +636,19 @@ function Call({ interview }: InterviewProps) {
         </Card>
         <a
           className="flex flex-row justify-center align-middle mt-3"
-          href="https://folo-up.co/"
+          href=""
           target="_blank"
         >
           <div className="text-center text-md font-semibold mr-2  ">
             Powered by{" "}
             <span className="font-bold">
-              Folo<span className="text-indigo-600">Up</span>
+              Mis<span className="text-indigo-600">Eco</span>
             </span>
           </div>
           <ArrowUpRightSquareIcon className="h-[1.5rem] w-[1.5rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-indigo-500 " />
         </a>
       </div>
+      <TimeWarning />
     </div>
   );
 }
