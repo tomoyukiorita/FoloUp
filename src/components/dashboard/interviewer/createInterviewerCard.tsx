@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -12,8 +11,10 @@ import { avatars } from "@/components/dashboard/interviewer/avatars";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useInterviewers } from "@/contexts/interviewers.context";
 import { useClerk } from "@clerk/nextjs";
+import { InterviewerService } from "@/services/interviewers.service";
 
-const createInterviewerCard = () => {
+// コンポーネント宣言をfunction式に変更
+function CreateInterviewerCard() {
   const [open, setOpen] = useState(false);
   const [gallery, setGallery] = useState(false);
   const [name, setName] = useState("");
@@ -22,7 +23,7 @@ const createInterviewerCard = () => {
   const [exploration, setExploration] = useState(0.2);
   const [speed, setSpeed] = useState(0.9);
   const [image, setImage] = useState("");
-  const { createInterviewer } = useInterviewers();
+  const { fetchInterviewers } = useInterviewers();
   const { user } = useClerk();
   const [isClicked, setIsClicked] = useState(false);
 
@@ -38,7 +39,8 @@ const createInterviewerCard = () => {
   }, [open]);
 
   const onSave = async () => {
-    await createInterviewer({
+    // InterviewerServiceを直接使用
+    await InterviewerService.createInterviewer({
       name: name,
       empathy: empathy * 10,
       rapport: rapport * 10,
@@ -47,6 +49,7 @@ const createInterviewerCard = () => {
       user_id: user?.id,
       image: image,
     });
+    await fetchInterviewers(); // 面接官リストを更新
     setIsClicked(false);
     setOpen(false);
   };
@@ -66,7 +69,7 @@ const createInterviewerCard = () => {
           </CardTitle> 
         </CardContent>
       </Card> */}
-      <Plus
+     <Plus
         size={30}
         strokeWidth={2}
         className="cursor-pointer bg-indigo-600 rounded-full text-white"
@@ -220,4 +223,4 @@ const createInterviewerCard = () => {
   );
 };
 
-export default createInterviewerCard;
+export default CreateInterviewerCard;
