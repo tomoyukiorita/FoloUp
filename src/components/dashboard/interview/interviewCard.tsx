@@ -30,7 +30,9 @@ function InterviewCard({ name, interviewerId, id, url, readableSlug }: Props) {
     const fetchInterviewer = async () => {
       const interviewer =
         await InterviewerService.getInterviewer(interviewerId);
-      setImg(interviewer.image);
+       if (interviewer) {
+        setImg(interviewer.image);
+      }
     };
     fetchInterviewer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
