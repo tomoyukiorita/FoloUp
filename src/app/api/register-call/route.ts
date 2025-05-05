@@ -7,16 +7,24 @@ const retellClient = new Retell({
   apiKey: process.env.RETELL_API_KEY || "",
 });
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   logger.info("register-call request received");
 
   const body = await req.json();
 
   const interviewerId = body.interviewer_id;
   const interviewer = await InterviewerService.getInterviewer(interviewerId);
+  
+  if (!interviewer || !interviewer.agent_id) {
+    logger.error("Interviewer or agent_id not found", { interviewerId });
+    return NextResponse.json(
+      { error: "Interviewer not found" },
+      { status: 404 }
+    );
+  }
 
   const registerCallResponse = await retellClient.call.createWebCall({
-    agent_id: interviewer?.agent_id,
+    agent_id: interviewer.agent_id,
     retell_llm_dynamic_variables: body.dynamic_data,
   });
 
