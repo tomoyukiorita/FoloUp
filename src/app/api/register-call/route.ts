@@ -17,6 +17,7 @@ export async function POST(req: Request) {
   
   if (!interviewer || !interviewer.agent_id) {
     logger.error("Interviewer or agent_id not found", { interviewerId });
+    
     return NextResponse.json(
       { error: "Interviewer not found" },
       { status: 404 }
@@ -29,7 +30,7 @@ export async function POST(req: Request) {
   });
 
   logger.info("Call registered successfully");
-
+  
   return NextResponse.json(
     {
       registerCallResponse,
