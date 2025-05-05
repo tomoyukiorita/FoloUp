@@ -6,7 +6,7 @@ import {
   XCircleIcon,
   CheckCircleIcon,
 } from "lucide-react";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Card, CardHeader, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { useResponses } from "@/contexts/responses.context";
@@ -185,13 +185,14 @@ function Call({ interview }: InterviewProps) {
       }
       //TODO: highlight the newly uttered word in the UI
     });
+
     return () => {
       // Clean up event listeners
       webClient.removeAllListeners();
     };
   }, []);
 
-  const onEndCallClick = async () => {
+  const onEndCallClick = useCallback(async () => {
     if (isStarted) {
       setLoading(true);
       webClient.stopCall();
@@ -200,7 +201,7 @@ function Call({ interview }: InterviewProps) {
     } else {
       setIsEnded(true);
     }
-  };
+  }, [isStarted]);
 
   const startConversation = async () => {
     const data = {
@@ -262,7 +263,9 @@ function Call({ interview }: InterviewProps) {
       const interviewer = await InterviewerService.getInterviewer(
         interview.interviewer_id,
       );
-      setInterviewerImg(interviewer.image);
+      if (interviewer && interviewer.image) {
+        setInterviewerImg(interviewer.image);
+      }
     };
     fetchInterviewer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -284,7 +287,9 @@ function Call({ interview }: InterviewProps) {
 
   // 時間管理のロジックを追加
   useEffect(() => {
-    if (!isCalling || !interview.time_duration) return;
+    if (!isCalling || !interview.time_duration) {
+      return;
+    }
 
     const softTimeLimit = parseInt(interview.time_duration) * 60; // 分を秒に変換
     const hardTimeLimit = (parseInt(interview.time_duration) + BUFFER_TIME_MINUTES) * 60;
@@ -340,21 +345,30 @@ function Call({ interview }: InterviewProps) {
   }, [isCalling, interview.time_duration, lastInterviewerResponse, onEndCallClick]);
 
   // プログレスバーの色を計算する関数を追加
-  const getProgressBarColor = () => {
-    if (timeExceeded) return "bg-red-500";
-    if (showTimeWarning) return "bg-yellow-500";
+  function getProgressBarColor() {
+    if (timeExceeded) {
+      return "bg-red-500";
+    }
+    
+    if (showTimeWarning) {
+      return "bg-yellow-500";
+    }
+    
     return "bg-indigo-500";
-  };
+  }
 
   // 残り時間の警告メッセージを表示するコンポーネントを追加
-  const TimeWarning = () => {
-    if (!showTimeWarning) return null;
+  function TimeWarning() {
+    if (!showTimeWarning) {
+      return null;
+    }
+    
     return (
       <div className="fixed bottom-4 right-4 bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
         <p>まもなく面接が終了します</p>
       </div>
     );
-  };
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

@@ -34,9 +34,9 @@ export function FeedbackForm({ onSubmit, email }: FeedbackFormProps) {
     <div className="flex flex-col gap-4">
       <h2 className="text-xl font-semibold">プラットフォームに満足しましたか？</h2>
       <div className="flex justify-center gap-4">
-        {Object.values(SatisfactionLevel).map((emoji, index) => (
+        {Object.values(SatisfactionLevel).map((emoji) => (
           <div
-            key={index}
+            key={emoji}
             className={`cursor-pointer p-2 ${
               satisfaction === emoji ? "border-2 border-indigo-600 rounded-lg" : ""
             }`}

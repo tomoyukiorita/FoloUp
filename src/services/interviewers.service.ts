@@ -85,6 +85,7 @@ export class InterviewerService {
       return { success: true };
     } catch (error) {
       console.error("Error in deleteInterviewer:", error);
+      
       return {
         success: false,
         error: "面接官の削除中にエラーが発生しました。"

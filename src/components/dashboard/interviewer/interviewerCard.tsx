@@ -24,7 +24,7 @@ interface Props {
   interviewer: Interviewer;
 }
 
-const interviewerCard = ({ interviewer }: Props) => {
+const InterviewerCard = ({ interviewer }: Props) => {
   const [open, setOpen] = useState(false);
   const { fetchInterviewers } = useInterviewers();
 
@@ -113,4 +113,4 @@ const interviewerCard = ({ interviewer }: Props) => {
   );
 };
 
-export default interviewerCard;
+export default InterviewerCard;

@@ -17,11 +17,11 @@ const InterviewerContext = createContext<InterviewerContextProps>({
   fetchInterviewers: async () => {},
 });
 
-export const InterviewerProvider = ({
+export function InterviewerProvider({
   children,
 }: {
   children: React.ReactNode;
-}) => {
+}) {
   const [interviewers, setInterviewers] = useState<Interviewer[]>([]);
   const { user } = useClerk();
   const [interviewersLoading, setInterviewersLoading] = useState(true);
@@ -52,6 +52,6 @@ export const InterviewerProvider = ({
       {children}
     </InterviewerContext.Provider>
   );
-};
+}
 
 export const useInterviewers = () => useContext(InterviewerContext);
