@@ -421,7 +421,7 @@ function Call({ interview }: InterviewProps) {
                   {interview?.logo_url && (
                     <div className="p-1 flex justify-center">
                       <Image
-                        src={interview?.logo_url}
+                        src={interview?.logo_url ||  "/default-logo.png"}
                         alt="Logo"
                         className="h-10 w-auto"
                         width={100}
