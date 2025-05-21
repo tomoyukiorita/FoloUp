@@ -36,8 +36,9 @@ export async function GET(request: NextRequest) {
     logger.info("Creating Lisa agent...");
     const newFirstAgent = await retellClient.agent.create({
       response_engine: { llm_id: newModel.llm_id, type: "retell-llm" },
-      voice_id: "11labs-Chloe",
+      voice_id: "openai-Nova",
       agent_name: "Lisa",
+      language: "ja-JP",
     });
     logger.info("Lisa agent created successfully", { agent_id: newFirstAgent.agent_id });
 
@@ -52,8 +53,9 @@ export async function GET(request: NextRequest) {
     logger.info("Creating Bob agent...");
     const newSecondAgent = await retellClient.agent.create({
       response_engine: { llm_id: newModel.llm_id, type: "retell-llm" },
-      voice_id: "11labs-Brian",
+      voice_id: "openai-Ash",
       agent_name: "Bob",
+      language: "ja-JP",
     });
     logger.info("Bob agent created successfully", { agent_id: newSecondAgent.agent_id });
 
